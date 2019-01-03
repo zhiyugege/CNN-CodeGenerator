@@ -1,0 +1,19 @@
+.bg-gray{
+	border-radius: 25px;
+	background-color:#eee;
+	border: 15px solid white;
+	padding: 25px;
+}
+
+.left-button{
+	width: 100%;
+}
+.title{
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.inputbar{
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
