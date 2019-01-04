@@ -15,7 +15,7 @@
 	
 </head>
 <body>
-	 <div class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0;">
+	<div class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom:15px;">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -44,48 +44,103 @@
     </div>
 
     <div class="container">
-		<div class="row min">
-		    <div class="col-md-4 bg-gray">
-				<p class="title">Button addons</p>
-		        <div class="form-group">
-		            <div class="input-group">
-		              <input type="text" class="form-control">
-		              <span class="input-group-btn">
-		                <button class="btn btn-default" type="button">Go!</button>
-		              </span>
-		            </div><!-- /input-group -->
-		        </div><!-- /.form-group -->
-		        <p class="title">Button addons</p>
-		        <div class="form-group">
-		            <div class="input-group">
-		                <input type="text" class="form-control">
-		                <span class="input-group-btn">
-		                    <button class="btn btn-default" type="button">Go!</button>
-		                </span>
-		            </div><!-- /input-group -->
-		        </div><!-- /.form-group -->
-		        <p class="title">Button addons</p>
-		        <div class="form-group">
-		            <div class="input-group">
-		                <input type="text" class="form-control">
-		                <span class="input-group-btn">
-		                     <button class="btn btn-default" type="button">Go!</button>
-		                </span>
-		            </div><!-- /input-group -->
-		        </div><!-- /.form-group -->
-		        <div class="form-group">
-		            <select data-toggle="select" multiple class="form-control multiselect multiselect-default mrs mbm">
-		                 <option value="0" selected>1 option</option>
-		                 <option value="1">2 option</option>
-		                 <option value="2" selected>3 option</option>
-		                 <option value="3">4 option</option>
-		                 <option value="4">5 option</option>
-		            </select>
+		<div class="row">
+		    <div class="col-md-4">
+		   		<div class="bg-gray">
+		   			<div class="row">
+		   				<div class="col-md-12">
+		   					<div class="col-md-4 pad-default">
+		   					<p class="title">零填充</p>
+			   				</div>
+			   				<div class="col-md-4">
+			   					<input type="checkbox" checked data-toggle="switch" id="custom-switch-01" />
+			   				</div>
+		   				</div>
+		   			</div>
 		        </div>
-		        <div>
-				  	<a class="btn btn-lg btn-primary left-button" role="button">Start Generate</a>
+
+		   		<div class="bg-gray mtop">
+		   			<p class="title">卷积核</p>
+					<form class="row" action="" style="padding:0">
+						<div class="form-group col-md-12 panel1">
+							<div class="input-group col-md-2 convolution">
+		              			<input type="email" class="form-control" placeholder="L">
+				            </div>
+				            <div class="col-md-1 multiple"><span>*</span></div>
+				            <div class="input-group col-md-2 convolution">
+		              			<input type="email" class="form-control" placeholder=" W">
+				            </div>
+				            <div class="col-md-1 multiple"><span>*</span></div>
+				            <div class="input-group col-md-2 convolution">
+		              			<input type="email" class="form-control" placeholder="H">
+				            </div>
+				            <div class="col-md-1 sprit"><span>/</span></div>
+				            <div class="input-group col-md-2 convolution">
+		              			<input type="email" class="form-control" placeholder="S">
+				            </div>
+				        </div>
+					</form>
+					<p class="common">常用卷积核</p>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-3 pad-default"><button type="button" class="btn btn-default btn-sm comcolor">3*12*12/1</button></div>
+							<div class="col-md-1"></div>
+							<div class="col-md-3 pad-default"><button type="button" class="btn btn-default btn-sm comcolor">3*12*12/1</button></div>
+							<div class="col-md-1"></div>
+							<div class="col-md-3 pad-default"><button type="button" class="btn btn-default btn-sm comcolor">3*12*12/1</button></div>
+						</div>
+					</div>
+		   		</div>
+					
+				<div class="bg-gray mtop">
+					<div class="row">
+		   				<div class="col-md-12 pool">
+		   					<div class="col-md-2 pad-default">
+		   					<p class="title">池化</p>
+			   				</div>
+			   				<div class="col-md-10">
+			   					<form class="row" role="form">
+					            <div class="form-group col-md-12">
+					              <label class="radio col-md-6 mar" for="radio100">
+					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio100" required>
+					                最大池化
+					              </label>
+					              <label class="radio col-md-6 mar" for="radio101">
+					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio101" required checked>
+					                平均池化
+					              </label>
+					            </div>
+					          </form>
+			   				</div>
+		   				</div>
+		   			</div>
 				</div>
-		    </div>
+					
+				<div class="bg-gray mtop">
+					<div class="row">
+						<div class="col-md-12 acpanel">
+							<div class="col-md-3 pad-default">
+								<p class="title active">激活函数</p>
+							</div>
+							<div class="form-group col-md-9 pad-default">
+				              	<select data-toggle="select" class="form-control select select-default">
+					                <option>sigmoid</option>
+					                <option>relu</option>
+					                <option>rrelu</option>
+					                <option>tanh</option>
+				              	</select>
+				            </div>
+						</div>
+					</div>
+		        </div>
+		        <div class="bg-gray mtop">
+					<div class="row">
+						<div class="col-md-12">
+						  	 <a class="btn btn-lg btn-primary left-button" role="button">Start Generate</a>
+						</div>
+					</div>
+		        </div>
+			</div>
 		    <div class="col-md-8 bg-gray">
 				<div class="form-group has-success">
 		            <!-- <label class="control-label" for="inputSuccess">Input with success</label>-->
@@ -115,10 +170,10 @@
 		            <!--  <label class="control-label" for="inputError">Input with error</label>-->
 		             <input type="text" class="form-control inputbar" id="inputError">
 		        </div>
-		    </div>
+		    </div>    
 		</div>
-
-    </div>
+		   
+	</div>
 	
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

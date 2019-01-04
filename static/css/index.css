@@ -1,8 +1,7 @@
 .bg-gray{
-	border-radius: 25px;
+	border-radius: 10px;
 	background-color:#eee;
-	border: 15px solid white;
-	padding: 25px;
+	padding: 20px;
 }
 
 .left-button{
@@ -10,10 +9,64 @@
 }
 .title{
 	font-weight: bold;
-	margin-bottom: 5px;
+	margin-bottom: 0;
 }
 .inputbar{
 	width: 50%;
 	margin: 0 auto;
 	text-align: center;
+}
+.convolution{
+	float: left !important;
+	padding: 5px;
+}
+.convolution>input{
+	border-radius: 5px !important;
+	text-align:center;
+	height: 32px;
+}
+.multiple{
+	text-align: center;
+	padding: 0;
+}
+.multiple>span{
+	font-weight: bold;
+	font-size: 30px;
+}
+.sprit{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 5px;
+}
+.panel1{
+	padding-top: 7px;
+	margin-bottom: 0;
+}
+.common{
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+.pad-default{
+	padding: 0;
+}
+.comcolor{
+	color: #34495e;
+	font-weight: 600;
+}
+.mtop{
+	margin-top: 5px;
+}
+.mar{
+	margin-top: 5px !important;
+}
+.pool{
+	height: 28px;
+}
+.active{
+	margin-top:5px;
+}
+.acpanel
+{
+	height: 40px;
 }
