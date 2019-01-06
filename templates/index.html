@@ -12,7 +12,10 @@
 	
 	<!-- Loading mycss -->
 	<link href="/static/css/index.css" rel="stylesheet">
-	
+	<script type="text/javascript" src="/static/lib/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/static/dist/js/flat-ui.min.js"></script> 
+	<script src="/static/lib/js/jquery-ui.js"></script>
+	<script src="/static/js/graph.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom:15px;">
@@ -43,7 +46,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 		<div class="row">
 		    <div class="col-md-4">
 		   		<div class="bg-gray">
@@ -141,48 +144,143 @@
 					</div>
 		        </div>
 			</div>
-		    <div class="col-md-8 bg-gray">
-				<div class="form-group has-success">
-		            <!-- <label class="control-label" for="inputSuccess">Input with success</label>-->
-		             <input type="text" class="form-control inputbar" id="inputSuccess">
+			<div class="col-md-8">
+				<div>
+		            <div>
+		                <input type="button" value="添加节点" class="btn btn-success" onclick="DrawJd()" />
+		                <input type="button" value="添加连接线" class="btn btn-info" onclick="DrawHX()" />
+		                <input type="button" value="移除连接线" class="btn btn-warning" id="removeLine" style="display: none;" onclick="DeleteHX()" />
+		                <input type="button" value="移除节点" class="btn btn-primary" id="removeJd" style="display: none;" onclick="DeleteJD()" />
+		            </div>
+		            <div id="ControlDiv" class="gpanel">
+		                <svg width="100%" height="500">
+		                    <defs>
+		                        <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+		                            <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		                        </marker>
+		                    </defs>
+		                    <g id="svgContext"></g>
+		                </svg>
+		            </div>
 		        </div>
-		        <div class="form-group has-warning">
-		             <!-- <label class="control-label" for="inputWarning">Input with warning</label>-->
-		             <input type="text" class="form-control inputbar" id="inputWarning">
-		        </div>
-		        <div class="form-group has-error">
-		            <!--  <label class="control-label" for="inputError">Input with error</label>-->
-		             <input type="text" class="form-control inputbar" id="inputError">
-		        </div>
-		        <div class="form-group has-success">
-		            <!-- <label class="control-label" for="inputSuccess">Input with success</label>-->
-		             <input type="text" class="form-control inputbar" id="inputSuccess">
-		        </div>
-		        <div class="form-group has-warning">
-		             <!-- <label class="control-label" for="inputWarning">Input with warning</label>-->
-		             <input type="text" class="form-control inputbar" id="inputWarning">
-		        </div>
-		        <div class="form-group has-error">
-		            <!--  <label class="control-label" for="inputError">Input with error</label>-->
-		             <input type="text" class="form-control inputbar" id="inputError">
-		        </div>
-		        <div class="form-group has-error">
-		            <!--  <label class="control-label" for="inputError">Input with error</label>-->
-		             <input type="text" class="form-control inputbar" id="inputError">
-		        </div>
-		    </div>    
+			</div>
+			<div style="float: left; display:none">
+	            <div style="margin-left: 10px; margin-top: 40px;">
+	                <div style="border: 1px solid #adadad; width: 250px; height: 175px;">
+	                    <div style="margin-top: 8px; margin-left: 20px;">流程名称：<input id="lcName" type="text" /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">流程描述：<textarea id="lcDes" style="height: 50px;"></textarea></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">流程标识：<input id="lcTag" type="text" disabled /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">主流标识：<input id="lczlTag" type="text" disabled /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">是否可用：<input id="lcEn" type="checkbox" /></div>
+	                </div>
+	            </div>
+	            <div style="margin-left: 10px; margin-top: 8px;">
+	                <div style="border: 1px solid #adadad; width: 250px; height: 205px;">
+	                    <div style="margin-top: 8px; margin-left: 20px;">节点名称：<input id="jdName" type="text" onchange="jdNameChange()" /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">节点描述：<textarea id="jdDes" style="height: 50px;" onchange="jdDesChange()"></textarea></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">是否可用：<input id="jdEn" type="checkbox" onchange="jdEnChange()" /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">节点标识：<input id="jdTag" type="text" disabled /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">背景颜色：<input type="button" value="设置颜色" /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">节点身份：<input type="button" value="操作身份" /></div>
+	                </div>
+	            </div>
+	            <div style="margin-left: 10px; margin-top: 8px;">
+	                <div style="border: 1px solid #adadad; width: 250px; height: 200px;">
+	                    <div style="margin-top: 8px; margin-left: 20px;">连线名称：<input id="lineName" type="text" onchange="lineNameChange()" /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">连线描述：<textarea id="lineDes" style="height: 50px;" onchange="lineDesChange()"></textarea></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">连线标识：<input id="lineTag" type="text" disabled /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">设置颜色：<input type="button" value="设置颜色" /></div>
+	                    <div style="margin-top: 8px; margin-left: 20px;">通过条件：<input type="button" value="设置条件" onclick="Save()" /></div>
+	                </div>
+	            </div>
+       		</div>
+		   
 		</div>
 		   
 	</div>
 	
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script type="text/javascript" src="/static/dist/js/vendor/jquery.min.js"></script>
-	<script type="text/javascript" src="/static/dist/js/flat-ui.min.js"></script> 
+	
+
     <script src="/static/lib/js/application.js"></script>
-    <script src="/static/js/index.js"></script>
    
+   	<script src="/static/js/index.js"></script>
+
+  
 </body>
 </html>
 
 
+ <!--<div class="col-md-8">
+		    	<div class="inner row">
+		    		<div class="square col-md-12">
+			         	<span>3</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			        </div>
+			        <div class="arrow">
+			         	<div class="col-md-2">
+			         		<img src="/static/img/arrowdown.png">
+			         	</div>
+						<div class="col-md-9 mtl taginfo">
+				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
+				         </div>
+			        </div>
+			        <div class="square col-md-12">
+			         	<span>3</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			        </div>
+			        <div class="arrow">
+			         	<div class="col-md-2">
+			         		<img src="/static/img/arrowdown.png">
+			         	</div>
+						<div class="col-md-9 mtl taginfo">
+				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
+				         </div>
+			        </div>
+			        <div class="square col-md-12">
+			         	<span>3</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			        </div>
+			        <div class="arrow">
+			         	<div class="col-md-2">
+			         		<img src="/static/img/arrowdown.png">
+			         	</div>
+						<div class="col-md-9 mtl taginfo">
+				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
+				         </div>
+			        </div>
+			        <div class="square col-md-12">
+			         	<span>3</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			        </div>
+			        <div class="arrow">
+			         	<div class="col-md-2" style="padding-right:0;">
+			         		<img src="/static/img/arrowdown.png">
+			         	</div>
+						<div class="col-md-9 mtl taginfo">
+				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
+				         </div>
+			        </div>
+			        <div class="square col-md-12">
+			         	<span>3</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			         	<span>*</span> 
+			         	<span>12</span> 
+			        </div>
+					
+		    	</div>
+		    </div>    -->
