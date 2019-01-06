@@ -24,6 +24,7 @@
 	border-radius: 5px !important;
 	text-align:center;
 	height: 32px;
+	padding: 0;
 }
 .multiple{
 	text-align: center;
@@ -107,9 +108,25 @@
 }
 .gpanel{
 	margin-top: 10px;
+	margin-right: 0;
+	margin-left: 0;
 	width:100%;
 	height: 500px; 
-	border: 1px solid #adadad; 
-	border-radius: 10px;
 	position: relative;
+	background-position: 50% 0, 50% 0;
+   	background-size: 30px 30px, 30px 30px; 
+   	background-color: #ffffff; 
+   	background-image: linear-gradient(#dcd9d9,#dcd9d9 1px,transparent 1px,transparent 10px,#dcd9d9 10px,#dcd9d9 11px,transparent 11px,transparent 20px,#dcd9d9 20px,#dcd9d9 21px,transparent 21px),
+   	linear-gradient(90deg,#dcd9d9,#dcd9d9 1px,transparent 1px,transparent 10px,#dcd9d9 10px,#dcd9d9 11px,transparent 11px,transparent 20px,#dcd9d9 20px,#dcd9d9 21px,transparent 21px); 
+
+}
+.right{
+	float: right;
+}
+.left{
+	float:left;
+}
+
+.pre-scrollable{
+	max-height: 500px;
 }

@@ -48,69 +48,89 @@
 
     <div class="container-fluid">
 		<div class="row">
-		    <div class="col-md-4">
+		    <div class="col-md-1">
+		    	<div class="row">
+		    		<div class="col-md-12"></div>
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12"></div>
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12"></div>
+		    	</div>
+		    </div>
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="left">
+			                <input type="button" value="添加节点" class="btn btn-success" style="display: none;" onclick="DrawJd()" />
+			                <input type="button" value="AddLine" class="btn btn-info" onclick="DrawHX()" />
+			                <input type="button" value="DeleteLine" class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()" />
+			                <input type="button" value="DeleteNode" class="btn btn-danger" id="removeJd" style="display: inline;" onclick="DeleteJD()" />
+			            </div>
+			            <div class="right">
+			            	<button type="button" class="btn btn-primary" onclick="DrawJd()">Convolution</button>
+				            <button type="button" class="btn btn-success">Pool</button>
+				            <button type="button" class="btn btn-info">Normalization</button>
+				            <button type="button" class="btn btn-warning">Activation</button>
+			            </div>
+					</div>
+				</div>
+	            <div id="ControlDiv" class="gpanel row pre-scrollable">
+            		<svg width="100%" height="3000">
+	                    <defs>
+	                        <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+	                            <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+	                        </marker>
+	                    </defs>
+	                    <g id="svgContext"></g>
+	                </svg>
+	            </div>
+            </div>
+			<div class="col-md-4">
 		   		<div class="bg-gray">
-		   			<div class="row">
-		   				<div class="col-md-12">
-		   					<div class="col-md-4 pad-default">
-		   					<p class="title">零填充</p>
-			   				</div>
-			   				<div class="col-md-4">
-			   					<input type="checkbox" checked data-toggle="switch" id="custom-switch-01" />
-			   				</div>
-		   				</div>
-		   			</div>
-		        </div>
-
-		   		<div class="bg-gray mtop">
-		   			<p class="title">卷积核</p>
+		   			<p class="title">Convolution</p>
 					<form class="row" action="" style="padding:0">
 						<div class="form-group col-md-12 panel1">
 							<div class="input-group col-md-2 convolution">
 		              			<input type="email" class="form-control" placeholder="L">
 				            </div>
 				            <div class="col-md-1 multiple"><span>*</span></div>
-				            <div class="input-group col-md-2 convolution">
+				            <div class="input-group col-md-1 convolution">
 		              			<input type="email" class="form-control" placeholder=" W">
 				            </div>
 				            <div class="col-md-1 multiple"><span>*</span></div>
-				            <div class="input-group col-md-2 convolution">
+				            <div class="input-group col-md-1 convolution">
 		              			<input type="email" class="form-control" placeholder="H">
 				            </div>
 				            <div class="col-md-1 sprit"><span>/</span></div>
-				            <div class="input-group col-md-2 convolution">
+				            <div class="input-group col-md-1 convolution">
 		              			<input type="email" class="form-control" placeholder="S">
+				            </div>
+				            <div class="col-md-1 sprit"><span>+</span></div>
+				            <div class="input-group col-md-1 convolution">
+		              			<input type="email" class="form-control" placeholder="P">
 				            </div>
 				        </div>
 					</form>
-					<p class="common">常用卷积核</p>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="col-md-3 pad-default"><button type="button" class="btn btn-default btn-sm comcolor">3*12*12/1</button></div>
-							<div class="col-md-1"></div>
-							<div class="col-md-3 pad-default"><button type="button" class="btn btn-default btn-sm comcolor">3*12*12/1</button></div>
-							<div class="col-md-1"></div>
-							<div class="col-md-3 pad-default"><button type="button" class="btn btn-default btn-sm comcolor">3*12*12/1</button></div>
-						</div>
-					</div>
 		   		</div>
 					
 				<div class="bg-gray mtop">
 					<div class="row">
 		   				<div class="col-md-12 pool">
 		   					<div class="col-md-2 pad-default">
-		   					<p class="title">池化</p>
+		   					<p class="title">Pool</p>
 			   				</div>
 			   				<div class="col-md-10">
 			   					<form class="row" role="form">
 					            <div class="form-group col-md-12">
 					              <label class="radio col-md-6 mar" for="radio100">
 					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio100" required>
-					                最大池化
+					                Max Pool
 					              </label>
 					              <label class="radio col-md-6 mar" for="radio101">
 					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio101" required checked>
-					                平均池化
+					                Average Pool
 					              </label>
 					            </div>
 					          </form>
@@ -118,14 +138,38 @@
 		   				</div>
 		   			</div>
 				</div>
-					
+				
+				<div class="bg-gray mtop">
+		   			<div class="row">
+		   				<div class="col-md-12 pool">
+		   					<div class="col-md-4 pad-default">
+		   					<p class="title">Normalization</p>
+			   				</div>
+			   				<div class="col-md-8">
+			   					<form class="row" role="form">
+					            <div class="form-group col-md-12">
+					              <label class="radio col-md-6 mar" for="radio100">
+					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio100" required>
+					                <span>Batch</span>
+					              </label>
+					              <label class="radio col-md-6 mar" for="radio101">
+					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio101" required checked>
+					                <span>Group</span>
+					              </label>
+					            </div>
+					          </form>
+			   				</div>
+		   				</div>
+		   			</div>
+		        </div>
+	
 				<div class="bg-gray mtop">
 					<div class="row">
 						<div class="col-md-12 acpanel">
-							<div class="col-md-3 pad-default">
-								<p class="title active">激活函数</p>
+							<div class="col-md-5 pad-default">
+								<p class="title active">Activation Function</p>
 							</div>
-							<div class="form-group col-md-9 pad-default">
+							<div class="form-group col-md-7 pad-default">
 				              	<select data-toggle="select" class="form-control select select-default">
 					                <option>sigmoid</option>
 					                <option>relu</option>
@@ -142,26 +186,6 @@
 						  	 <a class="btn btn-lg btn-primary left-button" role="button">Start Generate</a>
 						</div>
 					</div>
-		        </div>
-			</div>
-			<div class="col-md-8">
-				<div>
-		            <div>
-		                <input type="button" value="添加节点" class="btn btn-success" onclick="DrawJd()" />
-		                <input type="button" value="添加连接线" class="btn btn-info" onclick="DrawHX()" />
-		                <input type="button" value="移除连接线" class="btn btn-warning" id="removeLine" style="display: none;" onclick="DeleteHX()" />
-		                <input type="button" value="移除节点" class="btn btn-primary" id="removeJd" style="display: none;" onclick="DeleteJD()" />
-		            </div>
-		            <div id="ControlDiv" class="gpanel">
-		                <svg width="100%" height="500">
-		                    <defs>
-		                        <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
-		                            <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
-		                        </marker>
-		                    </defs>
-		                    <g id="svgContext"></g>
-		                </svg>
-		            </div>
 		        </div>
 			</div>
 			<div style="float: left; display:none">
@@ -206,7 +230,6 @@
     <script src="/static/lib/js/application.js"></script>
    
    	<script src="/static/js/index.js"></script>
-
   
 </body>
 </html>

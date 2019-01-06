@@ -34,7 +34,8 @@ function DrawLine(x1, y1, x2, y2, id) {
 var lines = new Array();
 var tag = new Array();
 function DrawRect(text, id) {
-    $('#ControlDiv').append('<div id="' + id + '" div="bj" class="draggable" onclick="SelectRect(\'' + id + '\')">' + text + '</div>');
+
+    $('#ControlDiv').append('<div id="' + id + '" div="bj" class="draggable" onclick="SelectRect(\'' + id + '\')" style="top:'+$("#ControlDiv").scrollTop()+'px">' + text + '</div>');
     $(".draggable").draggable({
         start: function () {
             lines = new Array();
@@ -191,16 +192,19 @@ function SetJD() {
 //两个矩形画线
 function GetLinePorint(id1, id2, id) {
 
+    var addHeight = parseInt($("#ControlDiv").scrollTop())
+        
+
     var rect1 = $('#' + id1);
     var rect2 = $('#' + id2);
 
     var x1 = rect1.position().left;
-    var y1 = rect1.position().top;
+    var y1 = rect1.position().top+addHeight;
     var width1 = rect1.width();
     var height1 = rect1.height();
 
     var x2 = rect2.position().left;
-    var y2 = rect2.position().top;
+    var y2 = rect2.position().top+addHeight;
     var width2 = rect2.width();
     var height2 = rect2.height();
 
@@ -255,6 +259,8 @@ function GetLinePorint(id1, id2, id) {
                 }
             }
         }
+
+
         var lineId = DrawLine(lineX1, lineY1, lineX2, lineY2, newGuid());
         var items = new item();
         items.jd1 = id1;
