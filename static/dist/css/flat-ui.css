@@ -1287,7 +1287,7 @@ label {
 }
 .form-control,
 .select2-search input[type="text"] {
-  border: 2px solid #bdc3c7;
+  border: 1.5px solid #bdc3c7;
   color: #34495e;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -1297,7 +1297,7 @@ label {
   border-radius: 6px;
   box-shadow: none;
   -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
-          transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+  transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
 .form-group.focus .form-control,
 .form-control:focus,
