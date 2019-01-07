@@ -117,18 +117,17 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="left">
-			                <input type="button" value="添加节点" class="btn btn-success" style="display: none;" onclick="DrawJd()" />
-			                <input type="button" value="AddLine" class="btn btn-info" onclick="DrawHX()" />
-			                <input type="button" value="Delete" class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()" />
-			                <input type="button" value="Delete" class="btn btn-danger" id="removeJd" style="display: none;" onclick="DeleteJD()" />
+			                <button type="button"  class="btn btn-info" onclick="DrawHX()">AddLine </button>
+			                <button type="button"  class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()">Delete</button>
+			                <button type="button" class="btn btn-danger" id="removeJd" style="display: none;" onclick="DeleteJD()">Delete</button>
 			            </div>
 			            <div class="right">
-			            	<button type="button" class="btn btn-info" onclick="DrawJd()">Convolution</button>
-				            <button type="button" class="btn btn-warning">Pool</button>
-				            <button type="button" class="btn btn-primary">Normalization</button>
-				            <button type="button" class="btn btn-success">Activation</button>
-				            <button type="button" class="btn btn-info">Concat</button>
-				            <button type="button" class="btn btn-warning">Fc</button>
+			            	<button type="button" class="btn btn-info" onclick="DrawJd('conv')">Convolution</button>
+				            <button type="button" class="btn btn-warning" onclick="DrawJd('pool')">Pool</button>
+				            <button type="button" class="btn btn-primary" onclick="DrawJd('normalization')">Normalization</button>
+				            <button type="button" class="btn btn-success" onclick="DrawJd('active')">Activation</button>
+				            <button type="button" class="btn btn-info" onclick="DrawJd('concat')">Concat</button>
+				            <button type="button" class="btn btn-warning" onclick="DrawJd('fc')">Fc</button>
 			            </div>
 					</div>
 				</div>
@@ -179,7 +178,7 @@
 					</form>
 		   		</div>
 					
-				<div class="bg-gray mtop">
+				<div class="bg-gray mtop" id="pool">
 					<div class="row">
 		   				<div class="col-md-12 col-sm-12 col-xs-12 pool">
 		   					<div class="col-md-2 col-sm-2 col-xs-2 pad-default">
@@ -187,13 +186,13 @@
 			   				</div>
 			   				<div class="col-md-10 col-sm-10 col-xs-10">
 			   					<form class="row" role="form">
-					            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio1">
-					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio1" required>
+					            <div class="form-group col-md-12">
+					              <label class="radio col-md-6 mar" for="maxpool">
+					                <input class="pool-input" name="optionsRadios2" type="radio" data-toggle="radio" value="" id="maxpool" required>
 					                Max Pool
 					              </label>
-					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio2">
-					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio2" required checked>
+					              <label  class="radio col-md-6 mar" for="avepool">
+					                <input  class="pool-input" name="optionsRadios2" type="radio" data-toggle="radio" value="" id="avepool" required checked>
 					                Average Pool
 					              </label>
 					            </div>
@@ -203,7 +202,7 @@
 		   			</div>
 				</div>
 				
-				<div class="bg-gray mtop">
+				<div class="bg-gray mtop" id="normalization">
 		   			<div class="row">
 		   				<div class="col-md-12 pool">
 		   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
@@ -211,13 +210,14 @@
 			   				</div>
 			   				<div class="col-md-8 col-sm-9 col-xs-9">
 			   					<form class="row" role="form">
-					            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio3">
-					                <input name="optionsRadios" type="radio" data-toggle="radio" value="" id="radio3" required>
+
+					            <div class="form-group col-md-12">
+					              <label class="radio col-md-6 mar" for="BN">
+					                <input class="norm-input" name="optionsRadios" type="radio" data-toggle="radio" value="" id="BN" required>
 					                Batch
 					              </label>
-					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio4">
-					                <input name="optionsRadios" type="radio" data-toggle="radio" value="" id="radio4" required checked>
+					              <label class="radio col-md-6 mar" for="GN">
+					                <input class="norm-input" name="optionsRadios" type="radio" data-toggle="radio" value="" id="GN" required checked>
 					                Group
 					              </label>
 					            </div>
@@ -227,14 +227,14 @@
 		   			</div>
 		        </div>
 	
-				<div class="bg-gray mtop">
+				<div class="bg-gray mtop" id="active">
 					<div class="row">
 						<div class="col-md-12 acpanel">
 							<div class="col-md-5 col-sm-3 col-xs-3 pad-default">
 								<p class="title active">Activation Func</p>
 							</div>
-							<div class="form-group col-md-7 col-sm-9 col-xs-9 pad-default">
-				              	<select data-toggle="select" class="form-control select select-default">
+							<div class="form-group col-md-7 pad-default">
+				              	<select id="active-select" data-toggle="select" class="form-control select select-default">
 					                <option>sigmoid</option>
 					                <option>relu</option>
 					                <option>rrelu</option>
@@ -245,7 +245,7 @@
 					</div>
 		        </div>
 				
-				<div class="bg-gray mtop">
+				<div class="bg-gray mtop" id="fc">
 		   			<div class="row">
 		   				<div class="col-md-12 pool">
 		   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
@@ -254,8 +254,8 @@
 			   				<div class="col-md-8 col-sm-9 col-xs-9">
 			   					<form class="row" role="form">
 			   					<div class="form-group">
-						            <div class="input-group col-md-12 col-sm-12 col-xs-12 fc">
-			              				<input type="email" class="form-control" placeholder="Chanel">
+						            <div class="input-group col-md-12 fc">
+			              				<input id="fully-input" type="email" class="form-control" placeholder="Chanel">
 					            	</div>
 				            	</div>
 					          </form>
@@ -264,7 +264,7 @@
 		   			</div>
 				</div>
 
-		        <div class="bg-gray mtop">
+		        <div class="bg-gray mtop" >
 					<div class="row">
 						<div class="col-md-12">
 						  	 <a class="btn btn-lg btn-primary left-button" role="button">Start Generate</a>
@@ -306,8 +306,7 @@
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/static/lib/js/application.js"></script>
-   	<script src="/static/js/index.js"></script>
-  
+   	<script src="/static/js/index.js"></script>  
 </body>
 </html>
 

@@ -8,6 +8,7 @@ p{
 	border-radius: 5px;
 	background-color:#F5F5F5;
 	padding: 20px;
+	border: 2px solid white;
 }
 
 .left-button{
@@ -26,7 +27,7 @@ p{
 	padding: 5px;
 }
 .convolution>input{
-	/* border-radius: 5px !important; */
+	border-radius: 5px !important; 
 	text-align:center;
 	height: 27px;
 	padding: 0;
