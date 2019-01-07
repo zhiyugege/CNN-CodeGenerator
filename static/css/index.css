@@ -1,6 +1,12 @@
+p{
+	margin:0;
+}
+.form-control{
+ border-width: 1px;
+}
 .bg-gray{
-	border-radius: 10px;
-	background-color:#eee;
+	border-radius: 5px;
+	background-color:#F5F5F5;
 	padding: 20px;
 }
 
@@ -9,7 +15,6 @@
 }
 .title{
 	font-weight: bold;
-	margin-bottom: 0;
 }
 .inputbar{
 	width: 50%;
@@ -23,12 +28,17 @@
 .convolution>input{
 	border-radius: 5px !important;
 	text-align:center;
-	height: 32px;
+	height: 27px;
 	padding: 0;
+}
+.tip{
+	font-size: 14px;
+	text-align: center;
 }
 .multiple{
 	text-align: center;
 	padding: 0;
+	margin-top: 25px;
 }
 .multiple>span{
 	font-weight: bold;
@@ -39,6 +49,10 @@
 	font-weight: bold;
 	font-size: 20px;
 	padding: 5px;
+	margin-top: 20px;
+}
+.convout{
+	padding-bottom: 5px;
 }
 .panel1{
 	padding-top: 7px;
@@ -161,4 +175,61 @@
 	height: 32px;
 	text-align:center;
 	padding: 10px;
+}
+
+.left-pad{
+	padding:10px;
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
+}
+.arrowpanel1{
+	margin-top: 5px;
+}
+.left-pad>p:first-child{
+	border-bottom: 1px solid #eae7e7;
+}
+.list-group-item{
+	background-color: #F5F5F5;
+	font-size: 15px;
+	border: none;
+}
+.list-group{
+	margin-bottom: 0;
+}
+.detail{
+	font-size: 15px;
+}
+.detail-info{
+	display: none;
+}
+.mmtop{
+	margin-top: 50px;
+}
+.mmtop1{
+	margin-top: 56px;
+}
+.form-group{
+	margin-bottom: 0;
+}
+.triangle{
+    display: inline-block;
+    margin: 0;
+    font-size: 18px;
+    width: 13px;
+}
+.fui-triangle-left-small:before {
+    content: "\e604";
+}
+.bg-black{
+	background-color: #34495e;
+	color: white;
+}
+.title1{
+	font-size: 13px;
+}
+.height1{
+	height: 175px;
+}
+.height2,.height3,.height4,.height5{
+	height: 76px;
 }

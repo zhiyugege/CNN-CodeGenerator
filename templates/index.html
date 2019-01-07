@@ -48,18 +48,67 @@
 
     <div class="container-fluid">
 		<div class="row">
-		    <div class="col-md-1">
-		    	<div class="row">
-		    		<div class="col-md-12"></div>
+		    <div class="col-md-1 col-sm-2 col-xs-2" style="padding:0;padding-right:10px">
+			    <div class="mmtop1 height1">
+		    		<span class="fui-triangle-left-small triangle"></span>
+			    	<span class="bg-black mtop left-pad ">
+		    			<b class="title1">Conv-info</b>
+			    	</span>
 		    	</div>
-		    	<div class="row">
-		    		<div class="col-md-12"></div>
+		    	<div class="row bg-gray mmtop left-pad detail-info height1" style="padding-left:22px">
+	    			<p><b>Conv-info</b></p>
+	    			<ul class="list-group">
+	    				<li class="list-group-item pad-default">num：10</li>
+	    				<li class="list-group-item pad-default">width：3</li>
+	    				<li class="list-group-item pad-default">height：3</li>
+	    				<li class="list-group-item pad-default">stride：1</li>
+	    				<li class="list-group-item pad-default">padding：1</li>
+	    			</ul>
 		    	</div>
-		    	<div class="row">
-		    		<div class="col-md-12"></div>
+		    	
+		    	
+		    	<div class="row bg-gray mtop left-pad detail-info height2"  style="padding-left:22px">
+	    			<p><b>Pool</b></p>
+	    			<p class="detail"><span>Max Pool</span></p>
+		    	</div>
+		    	<div class="height2">
+		    		<span class="fui-triangle-left-small triangle"></span>
+			    	<span class="bg-black mtop left-pad">
+		    			<b class="title1">Pool</b>
+			    	</span>
+		    	</div>
+		    	<div class="row bg-gray mtop left-pad detail-info height3"  style="padding-left:22px">
+    				<p><b>Normalize</b></p>
+		    		<p class="detail"><span>Batch</span></p>
+		    	</div>
+		    	<div class="height3">
+		    		<span class="fui-triangle-left-small triangle"></span>
+			    	<span class="bg-black mtop left-pad">
+		    			<b class="title1">Normalize</b>
+			    	</span>
+		    	</div>
+		    	<div class="row bg-gray mtop left-pad detail-info height4"  style="padding-left:22px">
+		    		<p><b>Act-func</b></p>
+		    		<p class="detail"><span>Sigmoid</span></p>
+		    	</div>
+		    	<div class="height4">
+		    		<span class="fui-triangle-left-small triangle"></span>
+			    	<span class="bg-black mtop left-pad">
+		    			<b class="title1">Act-func</b>
+			    	</span>
+		    	</div>
+		    	<div class="row bg-gray mtop left-pad detail-info height5"  style="padding-left:22px">
+		    		<p><b>Fc-info</b></p>
+		    		<p class="detail"><span>Chanel</span></p>
+		    	</div>
+		    	<div class="height5">
+		    		<span class="fui-triangle-left-small triangle"></span>
+			    	<span class="bg-black mtop left-pad">
+		    			<b class="title1">Fc-info</b>
+			    	</span>
 		    	</div>
 		    </div>
-			<div class="col-md-7">
+			<div class="col-md-7 col-sm-10 col-xs-10" style="margin-bottom: 10px;">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="left">
@@ -89,28 +138,36 @@
 	                </svg>
 	            </div>
             </div>
-			<div class="col-md-4">
-		   		<div class="bg-gray">
+			<div class="col-md-4 col-sm-12 col-xs-12" style="padding-left:0">
+		   		<div class="bg-gray convout">
 		   			<p class="title">Convolution</p>
 					<form class="row" action="" style="padding:0">
 						<div class="form-group col-md-12 panel1">
-							<div class="input-group col-md-2 convolution">
-		              			<input type="email" class="form-control" placeholder="L">
+							<div class="input-group col-md-2 col-sm-2 col-xs-1 convolution">
+								<p class="tip">Layer</p>
+								<input type="email" class="form-control" placeholder="L">
 				            </div>
-				            <div class="col-md-1 multiple"><span>*</span></div>
-				            <div class="input-group col-md-1 convolution">
+				            <div class="col-md-1 col-sm-1 col-xs-1 multiple"><span>*</span></div>
+				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+				            	<p class="tip">Width</p>
 		              			<input type="email" class="form-control" placeholder=" W">
 				            </div>
-				            <div class="col-md-1 multiple"><span>*</span></div>
-				            <div class="input-group col-md-1 convolution">
+				            <div class="col-md-1 col-sm-1 col-xs-1 multiple">
+								<p></p>
+				            	<span>*</span>
+				            </div>
+				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+				           		<p class="tip">Height</p>
 		              			<input type="email" class="form-control" placeholder="H">
 				            </div>
-				            <div class="col-md-1 sprit"><span>/</span></div>
-				            <div class="input-group col-md-1 convolution">
+				            <div class="col-md-1 col-sm-1 col-xs-1 sprit"><span>/</span></div>
+				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+				            	<p class="tip">Stride</p>
 		              			<input type="email" class="form-control" placeholder="S">
 				            </div>
-				            <div class="col-md-1 sprit"><span>+</span></div>
-				            <div class="input-group col-md-1 convolution">
+				            <div class="col-md-1 col-sm-1 col-xs-1 sprit"><span>+</span></div>
+				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+				            	<p class="tip">Padding</p>
 		              			<input type="email" class="form-control" placeholder="P">
 				            </div>
 				        </div>
@@ -119,18 +176,18 @@
 					
 				<div class="bg-gray mtop">
 					<div class="row">
-		   				<div class="col-md-12 pool">
-		   					<div class="col-md-2 pad-default">
+		   				<div class="col-md-12 col-sm-12 col-xs-12 pool">
+		   					<div class="col-md-2 col-sm-2 col-xs-2 pad-default">
 		   					<p class="title">Pool</p>
 			   				</div>
-			   				<div class="col-md-10">
+			   				<div class="col-md-10 col-sm-10 col-xs-10">
 			   					<form class="row" role="form">
-					            <div class="form-group col-md-12">
-					              <label class="radio col-md-6 mar" for="radio1">
+					            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio1">
 					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio1" required>
 					                Max Pool
 					              </label>
-					              <label class="radio col-md-6 mar" for="radio2">
+					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio2">
 					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio2" required checked>
 					                Average Pool
 					              </label>
@@ -144,17 +201,17 @@
 				<div class="bg-gray mtop">
 		   			<div class="row">
 		   				<div class="col-md-12 pool">
-		   					<div class="col-md-4 pad-default">
+		   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
 		   					<p class="title">Normalization</p>
 			   				</div>
-			   				<div class="col-md-8">
+			   				<div class="col-md-8 col-sm-9 col-xs-9">
 			   					<form class="row" role="form">
-					            <div class="form-group col-md-12">
-					              <label class="radio col-md-6 mar" for="radio3">
+					            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio3">
 					                <input name="optionsRadios" type="radio" data-toggle="radio" value="" id="radio3" required>
 					                Batch
 					              </label>
-					              <label class="radio col-md-6 mar" for="radio4">
+					              <label class="radio col-md-6 col-sm-6 col-xs-6 mar" for="radio4">
 					                <input name="optionsRadios" type="radio" data-toggle="radio" value="" id="radio4" required checked>
 					                Group
 					              </label>
@@ -168,10 +225,10 @@
 				<div class="bg-gray mtop">
 					<div class="row">
 						<div class="col-md-12 acpanel">
-							<div class="col-md-5 pad-default">
+							<div class="col-md-5 col-sm-3 col-xs-3 pad-default">
 								<p class="title active">Activation Func</p>
 							</div>
-							<div class="form-group col-md-7 pad-default">
+							<div class="form-group col-md-7 col-sm-9 col-xs-9 pad-default">
 				              	<select data-toggle="select" class="form-control select select-default">
 					                <option>sigmoid</option>
 					                <option>relu</option>
@@ -186,13 +243,13 @@
 				<div class="bg-gray mtop">
 		   			<div class="row">
 		   				<div class="col-md-12 pool">
-		   					<div class="col-md-4 pad-default">
+		   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
 		   					<p class="title">Fully Connect</p>
 			   				</div>
-			   				<div class="col-md-8">
+			   				<div class="col-md-8 col-sm-9 col-xs-9">
 			   					<form class="row" role="form">
 			   					<div class="form-group">
-						            <div class="input-group col-md-12 fc">
+						            <div class="input-group col-md-12 col-sm-12 col-xs-12 fc">
 			              				<input type="email" class="form-control" placeholder="Chanel">
 					            	</div>
 				            	</div>
@@ -240,92 +297,12 @@
 	                </div>
 	            </div>
        		</div>
-		   
 		</div>
-		   
 	</div>
-	
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	
-
     <script src="/static/lib/js/application.js"></script>
-   
    	<script src="/static/js/index.js"></script>
   
 </body>
 </html>
 
-
- <!--<div class="col-md-8">
-		    	<div class="inner row">
-		    		<div class="square col-md-12">
-			         	<span>3</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			        </div>
-			        <div class="arrow">
-			         	<div class="col-md-2">
-			         		<img src="/static/img/arrowdown.png">
-			         	</div>
-						<div class="col-md-9 mtl taginfo">
-				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
-				         </div>
-			        </div>
-			        <div class="square col-md-12">
-			         	<span>3</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			        </div>
-			        <div class="arrow">
-			         	<div class="col-md-2">
-			         		<img src="/static/img/arrowdown.png">
-			         	</div>
-						<div class="col-md-9 mtl taginfo">
-				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
-				         </div>
-			        </div>
-			        <div class="square col-md-12">
-			         	<span>3</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			        </div>
-			        <div class="arrow">
-			         	<div class="col-md-2">
-			         		<img src="/static/img/arrowdown.png">
-			         	</div>
-						<div class="col-md-9 mtl taginfo">
-				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
-				         </div>
-			        </div>
-			        <div class="square col-md-12">
-			         	<span>3</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			        </div>
-			        <div class="arrow">
-			         	<div class="col-md-2" style="padding-right:0;">
-			         		<img src="/static/img/arrowdown.png">
-			         	</div>
-						<div class="col-md-9 mtl taginfo">
-				          	 <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern" />
-				         </div>
-			        </div>
-			        <div class="square col-md-12">
-			         	<span>3</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			         	<span>*</span> 
-			         	<span>12</span> 
-			        </div>
-					
-		    	</div>
-		    </div>    -->
