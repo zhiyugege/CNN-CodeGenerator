@@ -65,14 +65,16 @@
 						<div class="left">
 			                <input type="button" value="添加节点" class="btn btn-success" style="display: none;" onclick="DrawJd()" />
 			                <input type="button" value="AddLine" class="btn btn-info" onclick="DrawHX()" />
-			                <input type="button" value="DeleteLine" class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()" />
-			                <input type="button" value="DeleteNode" class="btn btn-danger" id="removeJd" style="display: inline;" onclick="DeleteJD()" />
+			                <input type="button" value="Delete" class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()" />
+			                <input type="button" value="Delete" class="btn btn-danger" id="removeJd" style="display: none;" onclick="DeleteJD()" />
 			            </div>
 			            <div class="right">
-			            	<button type="button" class="btn btn-primary" onclick="DrawJd()">Convolution</button>
-				            <button type="button" class="btn btn-success">Pool</button>
-				            <button type="button" class="btn btn-info">Normalization</button>
-				            <button type="button" class="btn btn-warning">Activation</button>
+			            	<button type="button" class="btn btn-info" onclick="DrawJd()">Convolution</button>
+				            <button type="button" class="btn btn-warning">Pool</button>
+				            <button type="button" class="btn btn-primary">Normalization</button>
+				            <button type="button" class="btn btn-success">Activation</button>
+				            <button type="button" class="btn btn-info">Concat</button>
+				            <button type="button" class="btn btn-warning">Fc</button>
 			            </div>
 					</div>
 				</div>
@@ -124,12 +126,12 @@
 			   				<div class="col-md-10">
 			   					<form class="row" role="form">
 					            <div class="form-group col-md-12">
-					              <label class="radio col-md-6 mar" for="radio100">
-					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio100" required>
+					              <label class="radio col-md-6 mar" for="radio1">
+					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio1" required>
 					                Max Pool
 					              </label>
-					              <label class="radio col-md-6 mar" for="radio101">
-					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio101" required checked>
+					              <label class="radio col-md-6 mar" for="radio2">
+					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio2" required checked>
 					                Average Pool
 					              </label>
 					            </div>
@@ -148,13 +150,13 @@
 			   				<div class="col-md-8">
 			   					<form class="row" role="form">
 					            <div class="form-group col-md-12">
-					              <label class="radio col-md-6 mar" for="radio100">
-					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio100" required>
-					                <span>Batch</span>
+					              <label class="radio col-md-6 mar" for="radio3">
+					                <input name="optionsRadios" type="radio" data-toggle="radio" value="" id="radio3" required>
+					                Batch
 					              </label>
-					              <label class="radio col-md-6 mar" for="radio101">
-					                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio101" required checked>
-					                <span>Group</span>
+					              <label class="radio col-md-6 mar" for="radio4">
+					                <input name="optionsRadios" type="radio" data-toggle="radio" value="" id="radio4" required checked>
+					                Group
 					              </label>
 					            </div>
 					          </form>
@@ -167,7 +169,7 @@
 					<div class="row">
 						<div class="col-md-12 acpanel">
 							<div class="col-md-5 pad-default">
-								<p class="title active">Activation Function</p>
+								<p class="title active">Activation Func</p>
 							</div>
 							<div class="form-group col-md-7 pad-default">
 				              	<select data-toggle="select" class="form-control select select-default">
@@ -180,6 +182,26 @@
 						</div>
 					</div>
 		        </div>
+				
+				<div class="bg-gray mtop">
+		   			<div class="row">
+		   				<div class="col-md-12 pool">
+		   					<div class="col-md-4 pad-default">
+		   					<p class="title">Fully Connect</p>
+			   				</div>
+			   				<div class="col-md-8">
+			   					<form class="row" role="form">
+			   					<div class="form-group">
+						            <div class="input-group col-md-12 fc">
+			              				<input type="email" class="form-control" placeholder="Chanel">
+					            	</div>
+				            	</div>
+					          </form>
+			   				</div>
+		   				</div>
+		   			</div>
+				</div>
+
 		        <div class="bg-gray mtop">
 					<div class="row">
 						<div class="col-md-12">
