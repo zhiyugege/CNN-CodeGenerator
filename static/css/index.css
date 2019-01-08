@@ -178,14 +178,15 @@ p{
 }
 
 .left-pad{
-	padding:10px;
-	border-top-left-radius:0;
-	border-bottom-left-radius:0;
+	padding: 7px 10px;
+    border-radius: 5px;
+/*	border-top-left-radius:0;
+	border-bottom-left-radius:0;*/
 }
 .arrowpanel1{
 	margin-top: 5px;
 }
-.left-pad>p:first-child{
+.detail-info>p:first-child{
 	border-bottom: 1px solid #eae7e7;
 }
 .list-group-item{
@@ -200,6 +201,9 @@ p{
 	font-size: 15px;
 }
 .detail-info{
+	padding:10px 15px;
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
 	display: none;
 }
 .mmtop{
@@ -215,7 +219,7 @@ p{
     display: inline-block;
     margin: 0;
     font-size: 18px;
-    width: 13px;
+    width: 10px;
 }
 .fui-triangle-left-small:before {
     content: "\e604";
@@ -229,6 +233,7 @@ p{
 }
 .height1{
 	height: 175px;
+	margin-top: 56px;
 }
 .height2,.height3,.height4,.height5{
 	height: 76px;
