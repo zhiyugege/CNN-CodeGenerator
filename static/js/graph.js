@@ -1,3 +1,4 @@
+var GlobalId = "";
 var CurrentLineItem = null;//当前选择的线
 var CurrentRectItem = null;//最后选择的节点
 var CurrentRectItem1 = null;//当前选则的节点1
@@ -35,7 +36,12 @@ var lines = new Array();
 var tag = new Array();
 function DrawRect(text, id) {
 
-    $('#ControlDiv').append('<div id="' + id + '" div="bj" class="draggable" onclick="SelectRect(\'' + id + '\')" style="top:'+$("#ControlDiv").scrollTop()+'px">' + text + '</div>');
+    $('#ControlDiv').append('<div id="' + id + '" div="bj" class="draggable '+ text +'" onclick="SelectRect(\'' + id + '\',\''+ text +'\')" style="top:'+$("#ControlDiv").scrollTop()+'px"><span class="info" style="display:none"></span><span>' + text + '</span></div>');
+    // $('.'+text).click(function(){
+
+    //     $('#'+text).css('border','2px dotted #F39C12');
+    // })
+
     $(".draggable").draggable({
         start: function () {
             lines = new Array();
@@ -134,7 +140,8 @@ function ClickRect() {
     ClearAllInput();
 }
 //获取当期选择的节点
-function SelectRect(id) {
+function SelectRect(id,name) {
+
     event = event || window.event;
     event.stopPropagation();
     if (CurrentRectItem1 == null) {
@@ -162,6 +169,8 @@ function SelectRect(id) {
         SetJD();
     }
     $('#removeJd').show();
+    $('#'+name).css({'border':'2px dotted #F39C12','pointer-events':'all'});
+    GlobalId = id;
 }
 //清除所有的文本框内容
 function ClearAllInput() {
@@ -178,6 +187,9 @@ function ClearAllInput() {
 
  
     $("[div='bj']").css('background-color', '#fff');
+    $(".bg-gray").css({'border':'2px solid white','pointer-events':'none'});
+    $("input").val("");
+
 
 }
 //设置节点
@@ -356,8 +368,9 @@ function Save() {
     var lcEn = document.getElementById('lcEn').checked;
 }
 
-function DrawJd() {
-    var rectId = DrawRect("默认名称", newGuid());
+function DrawJd(name) {
+    console.log(name)
+    var rectId = DrawRect(name, newGuid());
 }
 function DrawHX() {
     if (CurrentRectItem1 != null && CurrentRectItem2 != null) {
@@ -386,6 +399,7 @@ function DeleteJD() {
         //移除div
         $('#' + CurrentRectItem.id).remove();
         $('#removeJd').hide();
+        $(".bg-gray").css({'border':'2px solid white','pointer-events':'none'});
     }
 }
 function jdNameChange() {
