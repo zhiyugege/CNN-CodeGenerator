@@ -12,10 +12,10 @@
 	
 	<!-- Loading mycss -->
 	<link href="/static/css/index.css" rel="stylesheet">
-	<script type="text/javascript" src="/static/lib/js/jquery.min.js"></script> 
-	<script type="text/javascript" src="/static/dist/js/flat-ui.min.js"></script> 
-	<script src="/static/lib/js/jquery-ui.js"></script>
-	<script src="/static/js/graph.js"></script>
+	<script  src="/static/lib/js/jquery.min.js"></script> 
+	<script  src="/static/dist/js/flat-ui.js"></script> 
+	<script  src="/static/lib/js/jquery-ui.js"></script>
+	<script  src="/static/js/graph.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom:15px;">
@@ -29,15 +29,10 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="currentPanelName">Working Pannel</span> <b class="caret"></b></a>
+              <ul class="dropdown-menu sheet-menu">               
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a data-toggle="modal" data-target="#myModal">Add a New</a></li>
               </ul>
             </li>
           </ul>
@@ -46,267 +41,314 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-		<div class="row">
-		    <div class="col-md-1 col-sm-2 col-xs-2" style="padding:0">
-			    <div class="mmtop height1">
-				    <div class="height1">
+	<!-- /container -->	
+	<div class="container" id="StartPanel">
+
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+            <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Create A New WorkPanel &raquo;</button>
+        </p>
+      </div>
+    </div> 
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Create A New WorkPanel</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+		        <div class="col-md-12">
+		          <form class="form-horizontal" role="form">
+		            <div class="form-group">
+		              <label for="inputName" class="col-sm-4 col-md-4 col-lg-3 control-label" style="text-align:center">Panel Name</label>
+		              <div class="col-sm-8 col-md-8 col-lg-8">
+		                <input id="PanelName" type="name" class="form-control" placeholder="Panel Name">
+		              </div>
+		            </div>
+		          </form>
+		        </div>
+		      </div><!-- /.row -->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="CloseModal">Close</button>
+	        <button type="button" class="btn btn-primary" id="CreateOK">OK</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="switch">
+		<div class="container-fluid" id="WorkPanel" style="display:none">
+			<div class="row">
+			    <div class="col-md-1 col-sm-2 col-xs-2" style="padding:0">
+				    <div class="mmtop height1 board">
 			    		<span class="fui-triangle-left-small triangle"></span>
 				    	<span class="bg-black mtop left-pad ">
 			    			<b class="title1">Conv Info</b>
 				    	</span>
+				    </div>
+			    	<div id="conv-panel" class="bg-gray mmtop detail-info height1">
+		    			<p><b>Conv</b></p>
+		    			<ul class="list-group">
+		    				<li class="list-group-item pad-default">num：<span id="conv-n">3</span></li>
+		    				<li class="list-group-item pad-default">width：<span id="conv-w">3</span></li>
+		    				<li class="list-group-item pad-default">height：<span id="conv-h">3</span></li>
+		    				<li class="list-group-item pad-default">stride：<span id="conv-s">1</span></li>
+		    				<li class="list-group-item pad-default">padding：<span id="conv-p">1</span></li>
+		    			</ul>
 			    	</div>
+			    	
+			    	<div class="height2 board" >
+			    		<span class="fui-triangle-left-small triangle"></span>
+				    	<span class="bg-black mtop left-pad">
+			    			<b class="title1">Pool</b>
+				    	</span>
+			    	</div>
+			    	<div id="pool-panel" class="bg-gray mtop detail-info height2">
+		    			<p><b>Pool</b></p>
+		    			<p class="detail"><span id="pool-info" >Max</span></p>
+			    	</div>
+			    	
+			    	<div class="height3 board">
+			    		<span class="fui-triangle-left-small triangle"></span>
+				    	<span class="bg-black mtop left-pad">
+			    			<b class="title1">Normalize</b>
+				    	</span>
+			    	</div>
+			    	<div id="norm-panel" class="bg-gray mtop detail-info height3">
+	    				<p><b>Normalize</b></p>
+			    		<p class="detail"><span id="norm-info" >Batch</span></p>
+			    	</div>
+
+			    	<div class="height4 board">
+			    		<span class="fui-triangle-left-small triangle"></span>
+				    	<span class="bg-black mtop left-pad">
+			    			<b class="title1">Act-func</b>
+				    	</span>
+			    	</div>
+			    	<div id="act-pool" class="bg-gray mtop detail-info height4">
+			    		<p><b>Act-func</b></p>
+			    		<p class="detail"><span id="act-info" >Sigmoid</span></p>
+			    	</div>
+
+			    	<div class="height5 board">
+			    		<span class="fui-triangle-left-small triangle"></span>
+				    	<span class="bg-black mtop left-pad">
+			    			<b class="title1">Fc Info</b>
+				    	</span>
+			    	</div>
+			    	<div id="fc-pool" class="bg-gray mtop detail-info height5">
+			    		<p><b>Fc-info</b></p>
+			    		<p class="detail"><span id="fc-info">Chanel</span></p>
+			    	</div>
+			    	
 			    </div>
-		    	<div class="bg-gray mmtop detail-info height1">
-	    			<p><b>Conv</b></p>
-	    			<ul class="list-group">
-	    				<li class="list-group-item pad-default">num：10</li>
-	    				<li class="list-group-item pad-default">width：3</li>
-	    				<li class="list-group-item pad-default">height：3</li>
-	    				<li class="list-group-item pad-default">stride：1</li>
-	    				<li class="list-group-item pad-default">padding：1</li>
-	    			</ul>
-		    	</div>
-		    	
-		    	<div class="height2">
-		    		<span class="fui-triangle-left-small triangle"></span>
-			    	<span class="bg-black mtop left-pad">
-		    			<b class="title1">Pool</b>
-			    	</span>
-		    	</div>
-		    	<div class="bg-gray mtop detail-info height2">
-	    			<p><b>Pool</b></p>
-	    			<p class="detail"><span>Max Pool</span></p>
-		    	</div>
-		    	
-		    	<div class="height3">
-		    		<span class="fui-triangle-left-small triangle"></span>
-			    	<span class="bg-black mtop left-pad">
-		    			<b class="title1">Normalize</b>
-			    	</span>
-		    	</div>
-		    	<div class="bg-gray mtop detail-info height3">
-    				<p><b>Normalize</b></p>
-		    		<p class="detail"><span>Batch</span></p>
-		    	</div>
-
-		    	<div class="height4">
-		    		<span class="fui-triangle-left-small triangle"></span>
-			    	<span class="bg-black mtop left-pad">
-		    			<b class="title1">Act-func</b>
-			    	</span>
-		    	</div>
-		    	<div class="bg-gray mtop detail-info height4">
-		    		<p><b>Act-func</b></p>
-		    		<p class="detail"><span>Sigmoid</span></p>
-		    	</div>
-
-		    	<div class="height5">
-		    		<span class="fui-triangle-left-small triangle"></span>
-			    	<span class="bg-black mtop left-pad">
-		    			<b class="title1">Fc Info</b>
-			    	</span>
-		    	</div>
-		    	<div class="bg-gray mtop detail-info height5">
-		    		<p><b>Fc-info</b></p>
-		    		<p class="detail"><span>Chanel</span></p>
-		    	</div>
-		    	
-		    </div>
-			<div class="col-md-7 col-sm-10 col-xs-10" style="margin-bottom: 10px;">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="left">
-			                <button type="button"  class="btn btn-info" onclick="DrawHX()">AddLine </button>
-			                <button type="button"  class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()">Delete</button>
-			                <button type="button" class="btn btn-danger" id="removeJd" style="display: none;" onclick="DeleteJD()">Delete</button>
-			            </div>
-			            <div class="right">
-			            	<button type="button" class="btn btn-info" onclick="DrawJd('conv')">Convolution</button>
-				            <button type="button" class="btn btn-warning" onclick="DrawJd('pool')">Pool</button>
-				            <button type="button" class="btn btn-primary" onclick="DrawJd('normalization')">Normalization</button>
-				            <button type="button" class="btn btn-success" onclick="DrawJd('active')">Activation</button>
-				            <button type="button" class="btn btn-info" onclick="DrawJd('concat')">Concat</button>
-				            <button type="button" class="btn btn-warning" onclick="DrawJd('fc')">Fc</button>
-			            </div>
-					</div>
-				</div>
-	            <div id="ControlDiv" class="gpanel row pre-scrollable">
-            		<svg width="100%" height="3000">
-	                    <defs>
-	                        <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
-	                            <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
-	                        </marker>
-	                    </defs>
-	                    <g id="svgContext"></g>
-	                </svg>
-	            </div>
-            </div>
-			<div class="col-md-4 col-sm-12 col-xs-12" style="padding-left:0">
-		   		<div class="bg-gray convout" id="conv">
-		   			<p class="title">Convolution</p>
-					<form class="row" action="" style="padding:0">
-						<div class="form-group col-md-12 panel1">
-							<div class="input-group col-md-2 col-sm-2 col-xs-1 convolution">
-								<p class="tip">Layer</p>
-								<input type="email" class="form-control convInfo" id="convL" value="" placeholder="L">
-				            </div>
-				            <div class="col-md-1 col-sm-1 col-xs-1 multiple"><span>*</span></div>
-				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
-				            	<p class="tip">Width</p>
-		              			<input type="email" class="form-control convInfo" id="convW" value="" placeholder=" W">
-				            </div>
-				            <div class="col-md-1 col-sm-1 col-xs-1 multiple">
-								<p></p>
-				            	<span>*</span>
-				            </div>
-				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
-				           		<p class="tip">Height</p>
-		              			<input type="email" class="form-control convInfo" id="convH" value="" placeholder="H">
-				            </div>
-				            <div class="col-md-1 col-sm-1 col-xs-1 sprit"><span>/</span></div>
-				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
-				            	<p class="tip">Stride</p>
-		              			<input type="email" class="form-control convInfo" id="convS" value="" placeholder="S">
-				            </div>
-				            <div class="col-md-1 col-sm-1 col-xs-1 sprit"><span>+</span></div>
-				            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
-				            	<p class="tip">Padding</p>
-		              			<input type="email" class="form-control convInfo"  id="convP" value="" placeholder="P">
-				            </div>
-				        </div>
-					</form>
-		   		</div>
-					
-				<div class="bg-gray mtop" id="pool">
-					<div class="row">
-		   				<div class="col-md-12 col-sm-12 col-xs-12 pool">
-		   					<div class="col-md-2 col-sm-2 col-xs-2 pad-default">
-		   					<p class="title">Pool</p>
-			   				</div>
-			   				<div class="col-md-10 col-sm-10 col-xs-10">
-			   					<form class="row" role="form">
-					            <div class="form-group col-md-12">
-					              <label class="radio col-md-6 mar" for="maxpool">
-					                <input class="pool-input" name="optionsRadios2" type="radio" data-toggle="radio" value="" id="maxpool" required>
-					                Max Pool
-					              </label>
-					              <label  class="radio col-md-6 mar" for="avepool">
-					                <input  class="pool-input" name="optionsRadios2" type="radio" data-toggle="radio" value="" id="avepool" required checked>
-					                Average Pool
-					              </label>
-					            </div>
-					          </form>
-			   				</div>
-		   				</div>
-		   			</div>
-				</div>
-				
-				<div class="bg-gray mtop" id="normalization">
-		   			<div class="row">
-		   				<div class="col-md-12 pool">
-		   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
-		   					<p class="title">Normalization</p>
-			   				</div>
-			   				<div class="col-md-8 col-sm-9 col-xs-9">
-			   					<form class="row" role="form">
-
-					            <div class="form-group col-md-12">
-					              <label class="radio col-md-6 mar" for="BN">
-					                <input class="norm-input" name="optionsRadios" type="radio" data-toggle="radio" value="" id="BN" required>
-					                Batch
-					              </label>
-					              <label class="radio col-md-6 mar" for="GN">
-					                <input class="norm-input" name="optionsRadios" type="radio" data-toggle="radio" value="" id="GN" required checked>
-					                Group
-					              </label>
-					            </div>
-					          </form>
-			   				</div>
-		   				</div>
-		   			</div>
-		        </div>
-	
-				<div class="bg-gray mtop" id="active">
-					<div class="row">
-						<div class="col-md-12 acpanel">
-							<div class="col-md-5 col-sm-3 col-xs-3 pad-default">
-								<p class="title active">Activation Func</p>
-							</div>
-							<div class="form-group col-md-7 pad-default">
-				              	<select id="active-select" data-toggle="select" class="form-control select select-default">
-					                <option>sigmoid</option>
-					                <option>relu</option>
-					                <option>rrelu</option>
-					                <option>tanh</option>
-				              	</select>
-				            </div>
-						</div>
-					</div>
-		        </div>
-				
-				<div class="bg-gray mtop" id="fc">
-		   			<div class="row">
-		   				<div class="col-md-12 pool">
-		   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
-		   					<p class="title">Fully Connect</p>
-			   				</div>
-			   				<div class="col-md-8 col-sm-9 col-xs-9">
-			   					<form class="row" role="form">
-			   					<div class="form-group">
-						            <div class="input-group col-md-12 fc">
-			              				<input id="fully-input" type="email" class="form-control" placeholder="Chanel">
-					            	</div>
-				            	</div>
-					          </form>
-			   				</div>
-		   				</div>
-		   			</div>
-				</div>
-
-		        <div class="bg-gray mtop" >
+				<div class="col-md-7 col-sm-10 col-xs-10" style="margin-bottom: 10px;">
 					<div class="row">
 						<div class="col-md-12">
-						  	 <a class="btn btn-lg btn-primary left-button" role="button">Start Generate</a>
+							<div class="left">
+				                <button type="button"  class="btn btn-info" onclick="DrawHX()">AddLine </button>
+				                <button type="button"  class="btn btn-danger" id="removeLine" style="display: inline;" onclick="DeleteHX()">Delete</button>
+				                <button type="button" class="btn btn-danger" id="removeJd" style="display: none;" onclick="DeleteJD()">Delete</button>
+				            </div>
+				            <div class="right">
+				            	<button type="button" class="btn btn-info" style="background-color:#ca5237" onclick="DrawJd('Conv')">Convolution</button>
+					            <button type="button" class="btn btn-warning" onclick="DrawJd('Pool')">Pool</button>
+					            <button type="button" class="btn btn-primary" onclick="DrawJd('Normalization')">Normalization</button>
+					            <button type="button" class="btn btn-success" onclick="DrawJd('Active')">Activation</button>
+					            <button type="button" class="btn btn-info" onclick="DrawJd('Concat')">Concat</button>
+					            <button type="button" class="btn btn-warning" style="background-color:#bd0026" onclick="DrawJd('Fc')">Fc</button>
+				            </div>
 						</div>
 					</div>
-		        </div>
+		            <div id="ControlDiv" class="gpanel row pre-scrollable" >
+	            		<svg width="100%" height="3000">
+		                    <defs>
+		                        <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 20 20">
+		                            <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		                        </marker>
+		                    </defs>
+		                    <g id="svgContext"></g>
+		                </svg>
+		            </div>
+	            </div>
+				<div class="col-md-4 col-sm-12 col-xs-12" style="padding-left:0">
+			   		<div class="bg-gray convout" id="Conv">
+			   			<p class="title">Convolution</p>
+						<form class="row" action="" style="padding:0">
+							<div class="form-group col-md-12 panel1">
+								<div class="input-group col-md-2 col-sm-2 col-xs-1 convolution">
+									<p class="tip">Layer</p>
+									<input type="email" class="form-control convInfo" id="convL" value="" placeholder="L">
+					            </div>
+					            <div class="col-md-1 col-sm-1 col-xs-1 multiple"><span>*</span></div>
+					            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+					            	<p class="tip">Width</p>
+			              			<input type="email" class="form-control convInfo" id="convW" value="" placeholder=" W">
+					            </div>
+					            <div class="col-md-1 col-sm-1 col-xs-1 multiple">
+									<p></p>
+					            	<span>*</span>
+					            </div>
+					            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+					           		<p class="tip">Height</p>
+			              			<input type="email" class="form-control convInfo" id="convH" value="" placeholder="H">
+					            </div>
+					            <div class="col-md-1 col-sm-1 col-xs-1 sprit"><span>/</span></div>
+					            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+					            	<p class="tip">Stride</p>
+			              			<input type="email" class="form-control convInfo" id="convS" value="" placeholder="S">
+					            </div>
+					            <div class="col-md-1 col-sm-1 col-xs-1 sprit"><span>+</span></div>
+					            <div class="input-group col-md-1 col-sm-1 col-xs-1 convolution">
+					            	<p class="tip">Padding</p>
+			              			<input type="email" class="form-control convInfo"  id="convP" value="" placeholder="P">
+					            </div>
+					        </div>
+						</form>
+			   		</div>
+						
+					<div class="bg-gray mtop" id="Pool">
+						<div class="row">
+			   				<div class="col-md-12 col-sm-12 col-xs-12 pool">
+			   					<div class="col-md-2 col-sm-2 col-xs-2 pad-default">
+			   					<p class="title">Pool</p>
+				   				</div>
+				   				<div class="col-md-10 col-sm-10 col-xs-10">
+				   					<form class="row" role="form">
+						            <div class="form-group col-md-12">
+						              <label class="radio col-md-6 mar" for="maxpool">
+						                <input class="pool-input" name="optionsRadios2" type="radio" data-toggle="radio" value="" id="maxpool" required checked>
+						                Max Pool
+						              </label>
+						              <label  class="radio col-md-6 mar" for="avepool">
+						                <input  class="pool-input" name="optionsRadios2" type="radio" data-toggle="radio" value="" id="avepool" required >
+						                Average Pool
+						              </label>
+						            </div>
+						          </form>
+				   				</div>
+			   				</div>
+			   			</div>
+					</div>
+					
+					<div class="bg-gray mtop" id="Normalization">
+			   			<div class="row">
+			   				<div class="col-md-12 pool">
+			   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
+			   					<p class="title">Normalization</p>
+				   				</div>
+				   				<div class="col-md-8 col-sm-9 col-xs-9">
+				   					<form class="row" role="form">
+
+						            <div class="form-group col-md-12">
+						              <label class="radio col-md-6 mar" for="BN">
+						                <input class="norm-input" name="optionsRadios" type="radio" data-toggle="radio" value="" id="BN" required checked>
+						                Batch
+						              </label>
+						              <label class="radio col-md-6 mar" for="GN">
+						                <input class="norm-input" name="optionsRadios" type="radio" data-toggle="radio" value="" id="GN" required >
+						                Group
+						              </label>
+						            </div>
+						          </form>
+				   				</div>
+			   				</div>
+			   			</div>
+			        </div>
+					<div class="large-active">
+					  <div class="bg-gray mtop" id="Active">
+						<div class="row">
+							<div class="col-md-12 acpanel">
+								<div class="col-md-5 col-sm-3 col-xs-3 pad-default">
+									<p class="title active">Activation Func</p>
+								</div>
+								<div class="form-group col-md-7 pad-default" id="select-box">
+					              	<select id="active-select" data-toggle="select" class="form-control select select-default">
+						                <option>Sigmoid</option>
+						                <option>Relu</option>
+						                <option>RRelu</option>
+						                <option>Tanh</option>
+						                <option>Softmax</option>
+					              	</select>
+					            </div>
+							</div>
+						</div>
+			          </div>
+					</div>
+					<div class="bg-gray mtop" id="Fc">
+			   			<div class="row">
+			   				<div class="col-md-12 pool">
+			   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
+			   					<p class="title">Fully Connect</p>
+				   				</div>
+				   				<div class="col-md-8 col-sm-9 col-xs-9">
+				   					<form class="row" role="form">
+				   					<div class="form-group">
+							            <div class="input-group col-md-12 fc">
+				              				<input id="fully-input" type="email" class="form-control" placeholder="Chanel">
+						            	</div>
+					            	</div>
+						          </form>
+				   				</div>
+			   				</div>
+			   			</div>
+					</div>
+
+			        <div class="bg-gray-g mtop" >
+						<div class="row">
+							<div class="col-md-12">
+							  	 <button onclick="generate()" class="btn btn-lg btn-primary left-button" role="button">Start Generate</button>
+							</div>
+						</div>
+			        </div>
+				</div>
+				<div style="float: left; display:none">
+		            <div style="margin-left: 10px; margin-top: 40px;">
+		                <div style="border: 1px solid #adadad; width: 250px; height: 175px;">
+		                    <div style="margin-top: 8px; margin-left: 20px;">流程名称：<input id="lcName" type="text" /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">流程描述：<textarea id="lcDes" style="height: 50px;"></textarea></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">流程标识：<input id="lcTag" type="text" disabled /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">主流标识：<input id="lczlTag" type="text" disabled /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">是否可用：<input id="lcEn" type="checkbox" /></div>
+		                </div>
+		            </div>
+		            <div style="margin-left: 10px; margin-top: 8px;">
+		                <div style="border: 1px solid #adadad; width: 250px; height: 205px;">
+		                    <div style="margin-top: 8px; margin-left: 20px;">节点名称：<input id="jdName" type="text" onchange="jdNameChange()" /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">节点描述：<textarea id="jdDes" style="height: 50px;" onchange="jdDesChange()"></textarea></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">是否可用：<input id="jdEn" type="checkbox" onchange="jdEnChange()" /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">节点标识：<input id="jdTag" type="text" disabled /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">背景颜色：<input type="button" value="设置颜色" /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">节点身份：<input type="button" value="操作身份" /></div>
+		                </div>
+		            </div>
+		            <div style="margin-left: 10px; margin-top: 8px;">
+		                <div style="border: 1px solid #adadad; width: 250px; height: 200px;">
+		                    <div style="margin-top: 8px; margin-left: 20px;">连线名称：<input id="lineName" type="text" onchange="lineNameChange()" /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">连线描述：<textarea id="lineDes" style="height: 50px;" onchange="lineDesChange()"></textarea></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">连线标识：<input id="lineTag" type="text" disabled /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">设置颜色：<input type="button" value="设置颜色" /></div>
+		                    <div style="margin-top: 8px; margin-left: 20px;">通过条件：<input type="button" value="设置条件" onclick="Save()" /></div>
+		                </div>
+		            </div>
+	       		</div>
 			</div>
-			<div style="float: left; display:none">
-	            <div style="margin-left: 10px; margin-top: 40px;">
-	                <div style="border: 1px solid #adadad; width: 250px; height: 175px;">
-	                    <div style="margin-top: 8px; margin-left: 20px;">流程名称：<input id="lcName" type="text" /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">流程描述：<textarea id="lcDes" style="height: 50px;"></textarea></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">流程标识：<input id="lcTag" type="text" disabled /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">主流标识：<input id="lczlTag" type="text" disabled /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">是否可用：<input id="lcEn" type="checkbox" /></div>
-	                </div>
-	            </div>
-	            <div style="margin-left: 10px; margin-top: 8px;">
-	                <div style="border: 1px solid #adadad; width: 250px; height: 205px;">
-	                    <div style="margin-top: 8px; margin-left: 20px;">节点名称：<input id="jdName" type="text" onchange="jdNameChange()" /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">节点描述：<textarea id="jdDes" style="height: 50px;" onchange="jdDesChange()"></textarea></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">是否可用：<input id="jdEn" type="checkbox" onchange="jdEnChange()" /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">节点标识：<input id="jdTag" type="text" disabled /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">背景颜色：<input type="button" value="设置颜色" /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">节点身份：<input type="button" value="操作身份" /></div>
-	                </div>
-	            </div>
-	            <div style="margin-left: 10px; margin-top: 8px;">
-	                <div style="border: 1px solid #adadad; width: 250px; height: 200px;">
-	                    <div style="margin-top: 8px; margin-left: 20px;">连线名称：<input id="lineName" type="text" onchange="lineNameChange()" /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">连线描述：<textarea id="lineDes" style="height: 50px;" onchange="lineDesChange()"></textarea></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">连线标识：<input id="lineTag" type="text" disabled /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">设置颜色：<input type="button" value="设置颜色" /></div>
-	                    <div style="margin-top: 8px; margin-left: 20px;">通过条件：<input type="button" value="设置条件" onclick="Save()" /></div>
-	                </div>
-	            </div>
-       		</div>
 		</div>
 	</div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript"> var csrf_token = '{{ csrf_token }}';</script>
     <script src="/static/lib/js/application.js"></script>
-   	<script src="/static/js/index.js"></script>  
+	<script src="/static/js/index.js"></script>
+	<script src="/static/js/add.js"></script>  
+	<script src="/static/js/post.js"></script> 
+    
 </body>
+
 </html>
 

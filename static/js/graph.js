@@ -1,3 +1,6 @@
+var GlobalPanelId = "";
+
+
 var GlobalId = "";
 var CurrentLineItem = null;//当前选择的线
 var CurrentRectItem = null;//最后选择的节点
@@ -7,6 +10,7 @@ var LineList = new Dictionary();//线id，和对象
 var RectList = new Dictionary();//所有的节点id和对象
 function item() { }
 item.prototype = {
+    panelId: '', //工作区id
     jd1: '',//节点1id
     jd2: '',//节点2id
     lineName: '默认名称',//线名称
@@ -36,11 +40,60 @@ var lines = new Array();
 var tag = new Array();
 function DrawRect(text, id) {
 
-    $('#ControlDiv').append('<div id="' + id + '" div="bj" class="draggable '+ text +'" onclick="SelectRect(\'' + id + '\',\''+ text +'\')" style="top:'+$("#ControlDiv").scrollTop()+'px"><span class="info" style="display:none"></span><span>' + text + '</span></div>');
-    // $('.'+text).click(function(){
+    $('#ControlDiv').append('<div id="' + id + '" div="bj" style="top:'+(parseInt($("#ControlDiv").scrollTop())+20)+'px" class="draggable '+ text+' '+text+'-style'+' " onclick="SelectRect(\'' + id + '\',\''+ text +'\')" ><span class="info" style="display:none"></span><span style="display:none" class="key">' + text + '</span><span class="showname">'+text+'</span></div>');
 
-    //     $('#'+text).css('border','2px dotted #F39C12');
-    // })
+    $(".draggable").click(function(){
+
+        pannelReset();
+        var key = $(this).find(".key").html();
+        if(key=='Conv') {
+            $(".height1").css("display","none");
+            $("#conv-panel").css({"display":"block"});
+            // $("#conv-panel").css({"width":"0"});
+            // $('#conv-panel').animate({width:"115px"});
+        }
+        else if(key=='Pool'){
+            var poolInfo = $("#pool-info").html();
+            $(".height2").css("display","none");
+            $("#pool-panel").css({"display":"block"});
+            if(poolInfo=='Max') {
+                $(this).find(".info").html('maxpool')
+                $(this).find(".showname").html('MaxPool')
+            }else if(poolInfo=='Average'){
+             $(this).find(".info").html('avepool')
+             $(this).find(".showname").html('AveragePool')   
+            }// $("#pool-panel").css({"width":"0"});
+            // $('#pool-panel').animate({width:"115px"});
+        }
+        else if(key=='Normalization') {
+            var normInfo = $("#norm-info").html();
+            $(".height3").css("display","none");
+            $("#norm-panel").css({"display":"block"});
+            if(normInfo=='Batch'){
+             $(this).find(".info").html('BN')
+             $(this).find(".showname").html('BN')
+            }else if(normInfo=='Group'){ 
+                $(this).find(".info").html('GN')
+                $(this).find(".showname").html('GN')
+            }// $("#norm-panel").css({"width":"0"});
+            // $('#norm-panel').animate({width:"115px"});
+        }
+        else if(key=='Active'){
+            var acInfo = $("#act-info").html();
+            $(".height4").css("display","none");
+            $("#act-pool").css({"display":"block"});
+            $(this).find(".info").html(acInfo);
+            $(this).find(".showname").html(acInfo);
+            // $("#act-pool").css({"width":"0"});
+            // $('#act-pool').animate({width:"115px"});
+        }else if(key=='Fc'){
+            $(".height5").css("display","none");
+            $("#fc-pool").css({"display":"block"});
+            // $("#fc-pool").css({"width":"0"});
+            // $('#fc-pool').animate({width:"115px"});
+        }   
+
+    })
 
     $(".draggable").draggable({
         start: function () {
@@ -98,6 +151,11 @@ function DrawRect(text, id) {
     RectList.put(item.id, item);
     return id;
 }
+function pannelReset(){
+    $(".detail-info").css("display","none");
+    $(".board").css("display","block");
+}
+
 //设置属性
 function SetAttr(id, Attr, AttrValue) {
     var c = document.getElementById(id);
@@ -112,27 +170,33 @@ function newGuid() {
     }
     return guid;
 }
-//获取鼠标点击的坐标
 $(document).ready(function(){
-$('#ControlDiv').click(function(e){
-     if($(e.target).is('.draggable')||$(e.target).is('.line')){
-     }else{
-         CurrentRectItem = null;
-         CurrentRectItem1 = null;
-         CurrentRectItem2 = null;
-         CurrentLineItem = null;
-         ClearAllInput();
-     }
-
- })
-});
+    $('#ControlDiv').click(function(e){
+         if($(e.target).is('.draggable')||$(e.target).is('.line')){
+         }else{
+             CurrentRectItem = null;
+             CurrentRectItem1 = null;
+             CurrentRectItem2 = null;
+             CurrentLineItem = null;
+             ClearAllInput();
+         }
+    })
+})
+function functiongraph() {
+    $('#ControlDiv').click(function(e){
+         if($(e.target).is('.draggable')||$(e.target).is('.line')){
+         }else{
+             CurrentRectItem = null;
+             CurrentRectItem1 = null;
+             CurrentRectItem2 = null;
+             CurrentLineItem = null;
+             ClearAllInput();
+         }
+    })
+}
 
 function ClickRect() {
-    //event = event || window.event;
-    ////获得相对于body定位的横标值；  
-    //x = event.clientX - $('#ControlDiv').offset().left
-    ////获得相对于body定位的纵标值；  
-    //y = event.clientY - $('#ControlDiv').offset().top
+
     CurrentRectItem = null;
     CurrentRectItem1 = null;
     CurrentRectItem2 = null;
@@ -157,20 +221,21 @@ function SelectRect(id,name) {
     ClearAllInput();
     CurrentRectItem = RectList.get(id);
     //设置样式
-    $("[div='bj']").css('background-color', '#fff');
+    $("[div='bj']").css('color', '#fff');
     if (CurrentRectItem1 != null) {
-        $('#' + CurrentRectItem1.id).css('background-color', '#ff7c7c');
+        $('#' + CurrentRectItem1.id).css('color', 'black');
     }
     if (CurrentRectItem2 != null) {
-        $('#' + CurrentRectItem2.id).css('background-color', '#ff7c7c');
+        $('#' + CurrentRectItem2.id).css('color', 'black');
     }
     if (CurrentRectItem != null) {
-        $('#' + CurrentRectItem.id).css('background-color', '#a040ff');
+        $('#' + CurrentRectItem.id).css('color', 'black');
         SetJD();
     }
     $('#removeJd').show();
     $('#'+name).css({'border':'2px dotted #F39C12','pointer-events':'all'});
     GlobalId = id;
+
 }
 //清除所有的文本框内容
 function ClearAllInput() {
@@ -186,7 +251,7 @@ function ClearAllInput() {
     $('#lineTag').val('');
 
  
-    $("[div='bj']").css('background-color', '#fff');
+    $("[div='bj']").css('color', '#fff');
     $(".bg-gray").css({'border':'2px solid white','pointer-events':'none'});
     $("input").val("");
 
@@ -272,12 +337,14 @@ function GetLinePorint(id1, id2, id) {
             }
         }
 
-
+        var panelId = $(".container-fluid").attr('id');
         var lineId = DrawLine(lineX1, lineY1, lineX2, lineY2, newGuid());
         var items = new item();
+        items.panelId = panelId;
         items.jd1 = id1;
         items.jd2 = id2;
         LineList.put(lineId, items);
+  
 
     }
     else {
@@ -369,7 +436,6 @@ function Save() {
 }
 
 function DrawJd(name) {
-    console.log(name)
     var rectId = DrawRect(name, newGuid());
 }
 function DrawHX() {
@@ -432,3 +498,14 @@ function lineDesChange() {
     }
     SetLine();
 }
+
+function eye()
+{
+    console.log('LineList:');
+    console.log(LineList.data);
+    console.log('RectList:');
+    console.log(RectList);
+}
+
+
+// eye()

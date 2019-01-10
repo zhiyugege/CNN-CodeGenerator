@@ -1,6 +1,9 @@
 p{
 	margin:0;
 }
+button{
+outline:none;
+}
 .form-control{
  border-width: 1px;
 }
@@ -10,7 +13,12 @@ p{
 	padding: 20px;
 	border: 2px solid white;
 }
-
+.bg-gray-g{
+	border-radius: 5px;
+	background-color:#F5F5F5;
+	padding: 20px;
+	border: 2px solid white;
+}
 .left-button{
 	width: 100%;
 }
@@ -110,16 +118,30 @@ p{
  }
  .draggable {
     width: 100px;
-    height: 40px;
-    border: 1px solid #adadad;
+    height: 30px;
     background-color: #fff;
     position: absolute;
     top: 10px;
     left: 10px;
     cursor: pointer;
-    line-height: 40px;
+    line-height: 30px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+}
+.dataStyle{
+	width: 100px;
+	height: 30px;
+	background-color: #36a058;
+	position: absolute;
+	top: 10px;
+	left: 100px;
+	cursor: pointer;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	color: white;
 }
 .gpanel{
 	margin-top: 10px;
@@ -206,6 +228,7 @@ p{
 	border-top-left-radius:0;
 	border-bottom-left-radius:0;
 	display: none;
+	margin-bottom: 20px;
 }
 .mmtop{
 	margin-top: 50px;
@@ -235,7 +258,32 @@ p{
 .height1{
 	height: 175px;
 	margin-top: 56px;
+	margin-bottom: 5px;
 }
 .height2,.height3,.height4,.height5{
 	height: 76px;
+	margin-bottom: 5px;
+}
+.data-style{
+	background-color: #36a058;
+	top:20px;
+	left: 45%;
+}
+.Conv-style{
+	background-color: #ca5237;
+}
+.Pool-style{
+	background-color: #f1c40f;
+}
+.Normalization-style{
+	background-color: #48c9b0;
+}
+.Active-style{
+	background-color: #21cc71;
+}
+.Concat-style{
+	background-color: #3498db;
+}
+.Fc-style{
+	background-color: #bd0026;
 }
