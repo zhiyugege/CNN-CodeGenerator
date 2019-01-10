@@ -1,5 +1,3 @@
-var GlobalPanelId = "";
-
 
 var GlobalId = "";
 var CurrentLineItem = null;//当前选择的线
@@ -94,6 +92,7 @@ function DrawRect(text, id) {
         }   
 
     })
+
 
     $(".draggable").draggable({
         start: function () {
@@ -251,7 +250,9 @@ function ClearAllInput() {
     $('#lineTag').val('');
 
  
+
     $("[div='bj']").css('color', '#fff');
+
     $(".bg-gray").css({'border':'2px solid white','pointer-events':'none'});
     $("input").val("");
 
@@ -436,6 +437,7 @@ function Save() {
 }
 
 function DrawJd(name) {
+
     var rectId = DrawRect(name, newGuid());
 }
 function DrawHX() {
