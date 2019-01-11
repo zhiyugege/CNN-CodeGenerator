@@ -1,6 +1,5 @@
 var GlobalPanelId = "";
 
-
 var GlobalId = "";
 var CurrentLineItem = null;//当前选择的线
 var CurrentRectItem = null;//最后选择的节点
@@ -257,7 +256,6 @@ function ClearAllInput() {
     $('#lineDes').val('');
     $('#lineTag').val('');
 
- 
     $("[div='bj']").css('color', '#fff');
     $(".bg-gray").css({'border':'2px solid white','pointer-events':'none'});
     $(".detail-info").css('display','none');

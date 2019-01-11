@@ -48,6 +48,8 @@ $(document).ready(function(){
 
 		$("#pool-info").html(str);
 
+		$("#pool-info").html(str);
+
 	})
 
 	//获取标准化信息
