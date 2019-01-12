@@ -4,11 +4,13 @@ class generate:
 		self.NodeInfo = NodeInfo
 		self.NodeGraph = NodeGraph
 		self.channels = dict()
+		self.result = dict()
 		self.re_adjacent = NodeGraph.re_adj_list #结点逆邻接表
 		self.adjacent = NodeGraph.adj_list
 		self.code = code
 		self.channels['0'] = self.CreateChannel(NodeInfo['0'],NodeInfo['0'])
-	
+		self.result['0'] = 'input'
+
 	def RecurrenceCreate(self, key):
 		if key in self.adjacent.keys():
 			adjNode = self.adjacent[key]
@@ -17,15 +19,14 @@ class generate:
 				PointedNode = self.re_adjacent[node]
 				channels_key = self.channels.keys()
 				if set(channels_key)>=set(PointedNode):
-					self.ChangeCode(node)
+					self.ChangeCode(node,PointedNode)
 					self.RecurrenceCreate(node)
 
-	def ChangeCode(self,key):
+	def ChangeCode(self,key,PointedNode):
 		_type = self.NodeInfo[key].split('-')[0]
 		value = self.NodeInfo[key].split('-')[1]
 		if _type=='1':
-			# print(channels)
-			# print(re_adjacent[key][0])
+
 			in_channel = 0
 			for node in self.re_adjacent[key]:
 				in_channel += int(self.channels[node]['out'])
@@ -40,8 +41,10 @@ class generate:
 				kernel_size = width
 			else:
 				kernel_size = '('+width+','+height+')'
-			self.code.Conv2d(in_channel, out_channel, kernel_size, stride, padding)
+			inputs = self.result[PointedNode[0]]
+			outputs = self.code.Conv2d(in_channel, out_channel, kernel_size, stride, padding, inputs)
 			self.channels[key] = self.CreateChannel(in_channel, out_channel) #更新当前结点的输入输出channel
+			self.result[key] = outputs
 
 		elif _type =='2':
 
@@ -54,8 +57,10 @@ class generate:
 				in_channel += int(self.channels[node]['out'])
 			in_channel = str(in_channel)
 			out_channel = in_channel
-			self.code.Pool2d(sign, kernel_size, stride)
+			inputs = self.result[PointedNode[0]]
+			outputs = self.code.Pool2d(sign, kernel_size, stride, inputs)
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
+			self.result[key] = outputs
 
 		elif _type =='3':
 
@@ -64,8 +69,10 @@ class generate:
 				in_channel += int(self.channels[node]['out'])
 			in_channel = str(in_channel)
 			out_channel = in_channel
-			self.code.BatchNorm(in_channel)
+			inputs = self.result[PointedNode[0]]
+			outputs = self.code.BatchNorm(in_channel, inputs)
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
+			self.result[key] = outputs
 
 		elif _type =='4':
 			in_channel = 0
@@ -73,8 +80,10 @@ class generate:
 				in_channel += int(self.channels[node]['out'])
 			in_channel = str(in_channel)
 			out_channel = in_channel
-			self.code.Activations(value)
+			inputs = self.result[PointedNode[0]]
+			outputs = self.code.Activations(value, inputs)
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
+			self.result[key] = outputs
 
 		elif _type =='5':
 			in_channel = 0
@@ -82,19 +91,26 @@ class generate:
 				in_channel += int(self.channels[node]['out'])
 			in_channel = str(in_channel)
 			out_channel = value
-			self.code.Fc(in_channel,out_channel)
+			inputs = self.result[PointedNode[0]]
+			outputs = self.code.Fc(in_channel, out_channel, inputs)
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
+			self.result[key] = outputs
 
 		elif _type =='6':
 			in_channel = 0
-			print(self.re_adjacent[key])
+			inputs = []
+			outputs = '0'
 			for node in self.re_adjacent[key]:
 				in_channel += int(self.channels[node]['out'])
 			in_channel = str(in_channel)
 			out_channel = in_channel
-			self.code.Concat(['x','x','x'],out_channel)
+			for node in PointedNode:
+				inputs.append(self.result[node])
+			if len(inputs):
+				outputs = self.code.Concat(inputs,value)
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
-
+			self.result[key] = outputs
+			
 	def CreateChannel(self, in_channel, out_channel):
 		channel = dict()
 		channel['in'] = in_channel

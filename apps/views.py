@@ -1,3 +1,6 @@
+import os
+import sys
+from django.http import HttpResponse, Http404, StreamingHttpResponse
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.template import loader
@@ -15,7 +18,7 @@ def GenerateApi(request):
 	NodeInfo = request.POST.get('NodeInfo')
 	LineInfo = request.POST.getlist('LineInfo')
 	NodeInfo = eval(NodeInfo)
-	# print(NodeInfo)
+
 	NodeGraph = getNodeGraph(NodeInfo,LineInfo)
 	code = torch.torch(NodeInfo['0'])
 
@@ -33,6 +36,16 @@ def getNodeGraph(NodeInfo, LineInfo):
 	g.create_adj()
 	g.create_re_adj()
 	return g
+
+def downloadApi(request):
+
+	path = sys.path[0]
+	file = open(path+'\\static\\hello.txt','r')
+	download_file='django.py'
+	response=StreamingHttpResponse(file)
+	response['Content-Type'] = 'application/octet-stream'
+	response['Content-Disposition'] = 'attachment;filename="{0}"'.format(download_file)
+	return response
 	# print("graph.adj_list\n",g.adj_list)
 	# print("graph.re_adj_list\n",g.re_adj_list)
 
