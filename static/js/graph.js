@@ -45,7 +45,14 @@ function DrawRect(text, id) {
 
         pannelReset();
         var key = $(this).find(".key").html();
-        if(key=='Conv') {
+        var dataInfo = $(this).find('.info').html()
+        var showname = $(this).find('.showname').html()
+        if(key=='data') {    
+            if(dataInfo) {
+                $(this).find('showname').html('data:'+dataInfo)
+            }else $(this).find('.showname').html('data:3')
+        }
+        else if(key=='Conv') {
             $(".height1").css("display","none");
             $("#conv-panel").css({"display":"block"});
             // $("#conv-panel").css({"width":"0"});
@@ -53,12 +60,15 @@ function DrawRect(text, id) {
         }
         else if(key=='Pool'){
             var poolInfo = $("#pool-info").html();
+            if(poolInfo=='Max' || poolInfo=='Average') $("#pool-info").html(poolInfo+'.3.1');
+            var poolInfo = poolInfo.substring(0, 3);
             $(".height2").css("display","none");
             $("#pool-panel").css({"display":"block"});
             if(poolInfo=='Max') {
                 $(this).find(".info").html('maxpool.3.1')
                 $(this).find(".showname").html('MaxPool')
-            }else if(poolInfo=='Average'){
+
+            }else if(poolInfo=='Ave'){
              $(this).find(".info").html('avepool.3.1')
              $(this).find(".showname").html('AvgPool')   
             }// $("#pool-panel").css({"width":"0"});

@@ -10,6 +10,7 @@ class generate:
 		self.code = code
 		self.channels['0'] = self.CreateChannel(NodeInfo['0'],NodeInfo['0'])
 		self.result['0'] = 'input'
+		self.outputs = ''
 
 	def RecurrenceCreate(self, key):
 		if key in self.adjacent.keys():
@@ -43,6 +44,7 @@ class generate:
 				kernel_size = '('+width+','+height+')'
 			inputs = self.result[PointedNode[0]]
 			outputs = self.code.Conv2d(in_channel, out_channel, kernel_size, stride, padding, inputs)
+			self.outputs = outputs
 			self.channels[key] = self.CreateChannel(in_channel, out_channel) #更新当前结点的输入输出channel
 			self.result[key] = outputs
 
@@ -59,6 +61,7 @@ class generate:
 			out_channel = in_channel
 			inputs = self.result[PointedNode[0]]
 			outputs = self.code.Pool2d(sign, kernel_size, stride, inputs)
+			self.outputs = outputs
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
 			self.result[key] = outputs
 
@@ -71,6 +74,7 @@ class generate:
 			out_channel = in_channel
 			inputs = self.result[PointedNode[0]]
 			outputs = self.code.BatchNorm(in_channel, inputs)
+			self.outputs = outputs
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
 			self.result[key] = outputs
 
@@ -82,6 +86,7 @@ class generate:
 			out_channel = in_channel
 			inputs = self.result[PointedNode[0]]
 			outputs = self.code.Activations(value, inputs)
+			self.outputs = outputs
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
 			self.result[key] = outputs
 
@@ -93,6 +98,7 @@ class generate:
 			out_channel = value
 			inputs = self.result[PointedNode[0]]
 			outputs = self.code.Fc(in_channel, out_channel, inputs)
+			self.outputs = outputs
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
 			self.result[key] = outputs
 
@@ -108,6 +114,7 @@ class generate:
 				inputs.append(self.result[node])
 			if len(inputs):
 				outputs = self.code.Concat(inputs,value)
+				self.outputs = outputs
 			self.channels[key] = self.CreateChannel(in_channel, out_channel)
 			self.result[key] = outputs
 			
@@ -116,3 +123,6 @@ class generate:
 		channel['in'] = in_channel
 		channel['out'] = out_channel
 		return channel
+
+	def getReturnCode(self):
+		self.code.Return(self.outputs)

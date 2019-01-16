@@ -289,3 +289,9 @@ outline:none;
 .Fc-style{
 	background-color: #bd0026;
 }
+.data>input{
+	border-radius: 5px !important;
+	height: 32px;
+	text-align:center;
+	padding: 10px;
+}

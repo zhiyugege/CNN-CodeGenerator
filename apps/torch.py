@@ -118,7 +118,11 @@ class torch:
         print(self.code)
         print(self.forward)
         return outputs
+
+    def Return(self, outputs):
+        self.forward.append('return '+outputs)
 # func = Torch()
+
 # print(func.Conv2d('10','24','3','1','1'))
 # print(func.Pool2d('maxpool','3','1'))
 # print(func.BatchNorm('100'))

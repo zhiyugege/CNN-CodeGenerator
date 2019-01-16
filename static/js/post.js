@@ -95,7 +95,21 @@ function post(NodeInfo,LineInfo) {
 			'X-CSRFToken':csrf_token
 		},
 		success: function(res, status) {
-
+			console.log('ok');
+			console.log(res);
+			if(res['status']=='ok'){
+				var init_info = '';
+				var forward_info = '';
+				var name = $('#currentPanelName').html()
+				for(var i=0;i<res['forward'].length;i++)
+					forward_info += res['forward'][i] + '$';
+				for(var j=0;j<res['init_code'].length;j++)
+					init_info += res['init_code'][j]+ '$';
+				$('#init_code').val(init_info)
+				$('#forward_code').val(forward_info)
+				$('#panel_name').val(name)
+				$('#download').submit();
+			}	
 		},
 		error: function(err) {
 			console.log(err);

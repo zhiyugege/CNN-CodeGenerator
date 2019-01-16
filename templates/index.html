@@ -40,14 +40,12 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
 	<!-- /container -->	
 	<div class="container" id="StartPanel">
-
       <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <h1>What's the Generator</h1>
+        <p>Aim at providing a new way and tool for deep learning learners to design their own convolutional neural networks. At last, it can provide a function to generate code files.By now, only supported by pytorch.Maybe there will be more Deep Learning Framework!</p>
+        <p>Now, To use this software to start a new study, just go ahead.</p>
         <p>
             <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Create A New WorkPanel &raquo;</button>
         </p>
@@ -82,7 +80,6 @@
 	    </div>
 	  </div>
 	</div>
-	
 	<div class="switch">
 		<div class="container-fluid" id="WorkPanel" style="display:none">
 			<div class="row">
@@ -96,7 +93,7 @@
 			    	<div id="conv-panel" class="bg-gray mmtop detail-info height1">
 		    			<p><b>Conv</b></p>
 		    			<ul class="list-group">
-		    				<li class="list-group-item pad-default">num：<span id="conv-n">3</span></li>
+		    				<li class="list-group-item pad-default">num：<span id="conv-n">1</span></li>
 		    				<li class="list-group-item pad-default">width：<span id="conv-w">3</span></li>
 		    				<li class="list-group-item pad-default">height：<span id="conv-h">3</span></li>
 		    				<li class="list-group-item pad-default">stride：<span id="conv-s">1</span></li>
@@ -270,8 +267,6 @@
 			   			</div>
 			        </div>
 
-
-
 					<div class="bg-gray mtop" id="Normalization" style="display:none">
 			   			<div class="row">
 			   				<div class="col-md-12 pool">
@@ -295,6 +290,7 @@
 			   				</div>
 			   			</div>
 			        </div>
+
 					<div class="large-active">
 					  <div class="bg-gray mtop" id="Active">
 						<div class="row">
@@ -316,26 +312,47 @@
 						</div>
 			          </div>
 					</div>
-					<div class="bg-gray mtop" id="Fc">
-			   			<div class="row">
-			   				<div class="col-md-12 pool">
-			   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
-			   					<p class="title">Fully Connect</p>
-				   				</div>
-				   				<div class="col-md-8 col-sm-9 col-xs-9">
-				   					<form class="row" role="form">
-				   					<div class="form-group">
-							            <div class="input-group col-md-12 fc">
-				              				<input id="fully-input" type="email" class="form-control" placeholder="Out Channels">
+
+					<div class="">
+						<div class="bg-gray mtop col-md-6" id="data">
+				   			<div class="row">
+				   				<div class="col-md-12 pool">
+				   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
+				   					<p class="title">Data</p>
+					   				</div>
+					   				<div class="col-md-8 col-sm-9 col-xs-9">
+					   					<form class="row" role="form">
+					   					<div class="form-group">
+								            <div class="input-group col-md-12 data">
+					              				<input id="data-input" type="email" class="form-control" placeholder="In Channels">
+							            	</div>
 						            	</div>
-					            	</div>
-						          </form>
+							          </form>
+					   				</div>
 				   				</div>
-			   				</div>
-			   			</div>
+				   			</div>
+						</div>		
+						<div class="bg-gray mtop col-md-6" id="Fc">
+				   			<div class="row">
+				   				<div class="col-md-12 pool">
+				   					<div class="col-md-4 col-sm-3 col-xs-3 pad-default">
+				   					<p class="title">FC</p>
+					   				</div>
+					   				<div class="col-md-8 col-sm-9 col-xs-9">
+					   					<form class="row" role="form">
+					   					<div class="form-group">
+								            <div class="input-group col-md-12 fc">
+					              				<input id="fully-input" type="email" class="form-control" placeholder="Out Channels">
+							            	</div>
+						            	</div>
+							          </form>
+					   				</div>
+				   				</div>
+				   			</div>
+						</div>											
 					</div>
 
-			        <div class="bg-gray-g mtop" >
+			        <div class="bg-gray-g mtop" style="margin-top:80px">
 						<div class="row">
 							<div class="col-md-12">
 							  	 <button onclick="generate()" class="btn btn-lg btn-primary left-button" role="button">Start Generate</button>
@@ -376,6 +393,12 @@
 			</div>
 		</div>
 	</div>
+
+	<form action="/apps/downloadApi/" method="post" id="download" style="display:none">
+		<input type="text" value="" name="init_code" id="init_code">
+		<input type="text" value="" name="forward_code" id="forward_code">
+		<input type="text" value="" name="panel_name" id="panel_name">
+	</form>
 	<script type="text/javascript"> var csrf_token = '{{ csrf_token }}';</script>
     <script src="/static/lib/js/application.js"></script>
 	<script src="/static/js/index.js"></script>

@@ -45,10 +45,7 @@ $(document).ready(function(){
 		} 
 		sign += "."+kernel+"."+stride
 		$("#"+GlobalId).find(".info").html(sign);	
-
-		$("#pool-info").html(str);
-
-		$("#pool-info").html(str);
+		$("#pool-info").html(str+"."+kernel+"."+stride);
 
 	})
 
@@ -88,7 +85,11 @@ $(document).ready(function(){
 		$("#"+GlobalId).find(".info").html(str);
 		$("#fc-info").html(str);
 	})
-
+	$("#data-input").change(function(){
+		var str = $("#data-input").val();
+		$("#"+GlobalId).find(".info").html(str);
+		$('#'+GlobalId).find(".showname").html('data:'+str)
+	})
 	DrawRect('data','0')
 
 
