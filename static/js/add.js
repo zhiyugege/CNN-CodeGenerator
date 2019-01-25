@@ -25,7 +25,6 @@ $(document).ready(function(){
 			PanelDict.put(preName,pre);
 		}
 		pre.remove();
-
 		$(".switch").append(current);
 		current.css("display","block");
 		$("#StartPanel").css("display","none");
@@ -58,15 +57,10 @@ function Display(id){
 }
 function reload(){
 
-	// $.getScript("/static/lib/js/jquery.min.js");
-	// $.getScript("/static/dist/js/flat-ui.min.js");
-	// $.getScript("/static/lib/js/jquery-ui.js");
 	$("#0").remove();
 	$('#Active').remove();
 	$(".large-active").append('<div class="bg-gray mtop" id="Active"><div class="row"><div class="col-md-12 acpanel"><div class="col-md-6 col-sm-3 col-xs-3 pad-default"><p class="title active">Activation Function</p></div><div class="form-group col-md-6 pad-default" id="select-box"><select id="active-select" data-toggle="select" class="form-control select select-default"><option>Sigmoid</option><option>ReLU</option><option>ELU</option><option>PReLU</option><option>Tanh</option><option>Softmax</option></select></div></div></div></div>')
 	functiongraph();
-	// funcindex();
-	// DrawRect('data','0')
 	$.getScript("/static/js/index.js");
 	$.getScript("/static/lib/js/application.js");
 

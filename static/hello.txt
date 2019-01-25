@@ -1,17 +1,22 @@
 import torch.nn as nn
 import torch
 class Net(nn.Module):
-	def __init__(self, in_channels=3):
+	def __init__(self, in_channels=6):
 		super(Net, self).__init__()
-		self.conv2d_1 = nn.Conv2d(3, 1, 3, stride=1, padding=1)
+		self.conv2d_1 = nn.Conv2d(6, 1, 1, stride=1, padding=1)
+		self.conv2d_2 = nn.Conv2d(6, 1, 1, stride=1, padding=1)
+		self.conv2d_3 = nn.Conv2d(1, 1, 3, stride=1, padding=1)
+		self.conv2d_4 = nn.Conv2d(6, 1, 1, stride=1, padding=1)
+		self.conv2d_5 = nn.Conv2d(1, 1, 5, stride=1, padding=1)
 		self.maxpool_1 = nn.MaxPool2d(3, stride=3)
-		self.bn_1 = nn.BatchNorm2d(1)
-		self.ReLU = nn.ReLU()
-		self.fc_1 = nn.Linear(1,2)
+		self.conv2d_6 = nn.Conv2d(6, 1, 1, stride=1, padding=1)
 	def forward(self,input):
 		conv2d_1_out = self.conv2d_1(input)
-		maxpool_1_out = self.maxpool_1(conv2d_1_out)
-		bn_1_out = self.bn_1(maxpool_1_out)
-		ReLU_1_out = self.ReLU(bn_1_out)
-		fc_1_out = self.fc_1(ReLU_1_out)
-		return fc_1_out
+		conv2d_2_out = self.conv2d_2(input)
+		conv2d_3_out = self.conv2d_3(conv2d_2_out)
+		conv2d_4_out = self.conv2d_4(input)
+		conv2d_5_out = self.conv2d_5(conv2d_4_out)
+		maxpool_1_out = self.maxpool_1(input)
+		conv2d_6_out = self.conv2d_6(maxpool_1_out)
+		concat_1_out = torch.cat((conv2d_1_out,conv2d_3_out,conv2d_5_out,conv2d_6_out), 1)
+		return concat_1_out

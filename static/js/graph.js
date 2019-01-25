@@ -1,6 +1,6 @@
-var GlobalPanelId = "";
+var GlobalPanelId = "";  //当前工作面板的Id,
 
-var GlobalId = "";
+var GlobalId = "";  //当前用户点击节点的Id,
 var CurrentLineItem = null;//当前选择的线
 var CurrentRectItem = null;//最后选择的节点
 var CurrentRectItem1 = null;//当前选则的节点1
@@ -55,22 +55,40 @@ function DrawRect(text, id) {
         else if(key=='Conv') {
             $(".height1").css("display","none");
             $("#conv-panel").css({"display":"block"});
+            if(dataInfo){
+                info = dataInfo.split(".")
+                $("#conv-n").html(info[0]);
+                $("#conv-w").html(info[1]);
+                $("#conv-h").html(info[2]);
+                $("#conv-s").html(info[3]);
+                $("#conv-p").html(info[4]);
+            } else{
+                $("#conv-n").html('1');
+                $("#conv-w").html('3');
+                $("#conv-h").html('3');
+                $("#conv-s").html('1');
+                $("#conv-p").html('1');
+            }
             // $("#conv-panel").css({"width":"0"});
             // $('#conv-panel').animate({width:"115px"});
         }
         else if(key=='Pool'){
-            var poolInfo = $("#pool-info").html();
-            if(poolInfo=='Max' || poolInfo=='Average') $("#pool-info").html(poolInfo+'.3.1');
-            var poolInfo = poolInfo.substring(0, 3);
             $(".height2").css("display","none");
             $("#pool-panel").css({"display":"block"});
-            if(poolInfo=='Max') {
-                $(this).find(".info").html('maxpool.3.1')
-                $(this).find(".showname").html('MaxPool')
-
-            }else if(poolInfo=='Ave'){
-             $(this).find(".info").html('avepool.3.1')
-             $(this).find(".showname").html('AvgPool')   
+            if(dataInfo){
+                info = dataInfo.split(".")
+                $("#pool-info").html(info[0]+"."+info[1]+"."+info[2]);
+            }else{
+                var poolInfo = $("#pool-info").html();
+                if(poolInfo=='Max' || poolInfo=='Average') $("#pool-info").html(poolInfo+'.3.1');
+                var poolInfo = poolInfo.substring(0, 3);
+                if(poolInfo=='Max') {
+                    $(this).find(".info").html('maxpool.3.1')
+                    $(this).find(".showname").html('MaxPool')
+                }else if(poolInfo=='Ave'){
+                 $(this).find(".info").html('avepool.3.1')
+                 $(this).find(".showname").html('AvgPool')   
+                }
             }// $("#pool-panel").css({"width":"0"});
             // $('#pool-panel').animate({width:"115px"});
         }
@@ -79,36 +97,48 @@ function DrawRect(text, id) {
             $(this).find(".showname").html('BN')
         }
         else if(key=='Concat') {
-            var concatInfo = $("#concat-info").html();
             $(".height3").css("display","none");
             $("#concat-panel").css({"display":"block"});
-            if(concatInfo=='Deepth'){
-             $(this).find(".info").html('0')
-             // $(this).find(".showname").html('BN')
-            }else if(concatInfo=='Width'){ 
-                $(this).find(".info").html('1')
-                // $(this).find(".showname").html('GN')
-            }// $("#norm-panel").css({"width":"0"});
+            if(dataInfo){
+                if(dataInfo=='0')
+                    $("#concat-info").html('Deepth');
+                else
+                    $("#concat-info").html('Width');
+            }else{
+                var concatInfo = $("#concat-info").html();
+                if(concatInfo=='Deepth'){
+                 $(this).find(".info").html('0')
+                 // $(this).find(".showname").html('BN')
+                }else if(concatInfo=='Width'){ 
+                    $(this).find(".info").html('1')
+                    // $(this).find(".showname").html('GN')
+                }// $("#norm-panel").css({"width":"0"});
+            }
             // $('#norm-panel').animate({width:"115px"});
         }
         else if(key=='Active'){
-            var acInfo = $("#act-info").html();
             $(".height4").css("display","none");
             $("#act-pool").css({"display":"block"});
-            $(this).find(".info").html(acInfo);
-            $(this).find(".showname").html(acInfo);
+            if(dataInfo){
+                $("#act-info").html(dataInfo);
+            }else{
+                var acInfo = $("#act-info").html();
+                
+                $(this).find(".info").html(acInfo);
+                $(this).find(".showname").html(acInfo);
+            }
+
             // $("#act-pool").css({"width":"0"});
             // $('#act-pool').animate({width:"115px"});
         }else if(key=='Fc'){
             $(".height5").css("display","none");
             $("#fc-pool").css({"display":"block"});
+            if(dataInfo){
+                $("#fc-info").html(dataInfo);
+            }
             // $("#fc-pool").css({"width":"0"});
             // $('#fc-pool').animate({width:"115px"});
-        }else if(key=='Concat') {
-
-
         }
-
     })
 
     $(".draggable").draggable({
@@ -440,15 +470,10 @@ function Save() {
             var jdColor = RectList.get(jdItem).jdColorf;//节点颜色
         }
     }
-    //流程名称
-    var lcName = $('#lcName').val();
-    //流程描述
+    var lcName = $('#lcName').val();  
     var lcDes = $('#lcDes').val();
-    //流程标识
     var lcTag = $('#lcTag').val();
-    //主流程标识
     var lcz = $('#lczlTag').val();
-    //是否可用
     var lcEn = document.getElementById('lcEn').checked;
 }
 
@@ -523,6 +548,7 @@ function eye()
     console.log('RectList:');
     console.log(RectList);
 }
+
 
 
 // eye()

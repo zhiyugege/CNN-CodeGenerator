@@ -64,15 +64,9 @@ function getNodeInfo(nodeList) {
 	return NodeInfo;
 }
 
-
+//main
 function generate()
 {
-	// console.log(GlobalPanelId);
-	// console.log('LineList:');
-	// console.log(LineList);
- //    console.log(LineList.data);
- //    console.log('RectList:');
- //    console.log(RectList);
     var info = getLineInfo();
     var currentLineInfoList = info.currentList;
     var currentNodeList = info.nodeList;
