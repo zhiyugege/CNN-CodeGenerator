@@ -1,6 +1,6 @@
 # CNN-CodeGenerator
 
-> Author：zhiyu-Lin、yanglin-Chen 
+> Author：zhiyu-Lin、yangling-Chen 
 
 >Date：2019-01-16
 
